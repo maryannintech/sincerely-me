@@ -21,7 +21,7 @@ export function SignIn() {
           </div>
         </div>
       </div>
-      <div className="flex flex-col sm:w-140 gap-8 sm:gap-15 mx-auto">
+      <div className="flex flex-col sm:w-140 gap-8 sm:gap-12 mx-auto">
         <div className="flex justify-center sm:justify-end items-center gap-2 sm:mt-5">
           <img src="src\assets\images\logo.png" className="w-10"></img>
           <p className="sm:text-xl">Sincerely, Me</p>
@@ -50,12 +50,17 @@ export function SignIn() {
             required
             isPassword={true}
             ></Input>
-            <p className="text-end mt-2 sm:text-xl mb-8">forgot password?</p>
+            <p className="text-end mt-2 sm:text-xl mb-5 sm:mb-8">forgot password?</p>
             <SubmitButton label="Sign In" />
           </form>
-          <p className="text-center mt-5 sm:text-xl">Already have an account?<br></br> <a href="#" className="text-[var(--primary-color)]">Sign In</a></p>
+          <p className="text-center my-4 sm:text-xl">Already have an account?<br></br> <a href="#" className="text-[var(--primary-color)]">Sign In</a></p>
+          <div className="flex justify-center items-center gap-2 mb-4">
+            <div className="bg-[#CC7676] w-5 h-5 p-4 rounded-full opacity-50"></div>
+            <div className="bg-[#CC7676] w-5 h-5 p-4 rounded-full opacity-80"></div>
+            <div className="bg-[#CC7676] w-5 h-5 p-4 rounded-full"></div>
+          </div>
         </div>
-      </div>
+      </div> 
     </div>
   );
 }

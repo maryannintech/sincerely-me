@@ -1,7 +1,4 @@
 export function SignIn() {
-  return (
-    <div>
-        
-    </div>
-  );
+  document.title = "Sign In - Sincerely, Me";
+  return <div></div>;
 }

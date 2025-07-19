@@ -4,7 +4,7 @@ import { SubmitButton } from "../components/SubmitButton";
 export function SignIn() {
   document.title = "Sign In - Sincerely, Me";
   return (
-    <div className="flex flex-wrap gap-5 sm:gap-10">
+    <div className="flex flex-wrap gap-5 sm:gap-0">
       <div>
         <div className="sm:w-200 h-50 sm:h-screen w-screen flex flex-col justify-center">
           <div className="bg-[var(--primary-color)] h-screen sm:h-165 sm:ml-5 flex flex-col justify-center items-center sm:rounded-lg">

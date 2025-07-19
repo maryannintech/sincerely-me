@@ -1,13 +1,15 @@
 @import "tailwindcss";
 
 * {
-   font-family: "Josefin Slab", serif;
-   background-color: var(--cream-color);
+  font-family: "Josefin Slab", serif;
+}
+
+body {
+  background-color: var(--cream-color);
 }
 
 :root {
-  --primary-color: #B84C65;
-  --cream-color: #F4EFE2;
-  --light-pink: #CC7676;
-
+  --primary-color: #b84c65;
+  --cream-color: #f4efe2;
+  --light-pink: #cc7676;
 }

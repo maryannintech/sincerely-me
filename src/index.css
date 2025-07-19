@@ -2,6 +2,7 @@
 
 * {
    font-family: "Josefin Slab", serif;
+   background-color: var(--cream-color);
 }
 
 :root {

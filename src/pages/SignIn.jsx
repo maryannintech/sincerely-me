@@ -1,7 +1,7 @@
 export function SignIn() {
-    return (
-        <>
-        <h1>Sign in</h1>
-        </>
-    )
+  return (
+    <>
+      <h1 className="text-2xl font-bold">Sign In</h1>
+    </>
+  );
 }

@@ -6,7 +6,7 @@ export function SignIn() {
   return (
     <div className="flex flex-wrap gap-5 sm:gap-0">
       <div>
-        <div className="sm:w-200 h-50 sm:h-screen w-screen flex flex-col justify-center">
+        <div className="sm:w-160 h-50 sm:h-screen w-screen flex flex-col justify-center">
           <div className="bg-[var(--primary-color)] h-screen sm:h-165 sm:ml-5 flex flex-col justify-center items-center sm:rounded-lg">
             <img
               src="src\assets\images\envelope.png"
@@ -21,7 +21,7 @@ export function SignIn() {
           </div>
         </div>
       </div>
-      <div className="flex flex-col sm:w-140 gap-8 sm:gap-12 mx-auto">
+      <div className="flex flex-col sm:w-180 gap-8 sm:gap-12 mx-auto">
         <div className="flex justify-center sm:justify-end items-center gap-2 sm:mt-5">
           <img src="src\assets\images\logo.png" className="w-10"></img>
           <p className="sm:text-xl">Sincerely, Me</p>

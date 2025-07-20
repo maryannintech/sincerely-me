@@ -18,7 +18,7 @@ export function Input({
             name={name}
             required={required}
             placeholder={placeholder}
-            className="bg-[#EBBABA] block pl-2 rounded-md w-full py-1 sm:py-2"
+            className="bg-[#EBBABA] block pl-2 rounded-md w-full py-1 sm:py-2 active:outline-none focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)]"
           ></input>
           {isPassword && (
             <button

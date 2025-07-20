@@ -40,7 +40,7 @@ export function LogIn() {
         <p className="text-center sm:text-xl">
           Don't have an account?<br></br>{" "}
           <a href="#" className="text-[var(--primary-color)]">
-            Log In
+            Sign In
           </a>
         </p>
       </div>

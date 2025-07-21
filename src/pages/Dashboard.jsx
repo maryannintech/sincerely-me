@@ -8,7 +8,7 @@ export function Dashboard() {
   ];
   document.title = "Dashboard - Sincerely Me";
   return (
-    <div className="sm:py-5 sm:px-10 px-4">
+    <div className="sm:py-5 sm:px-5 px-4">
       <div className="flex sm:flex-col justify-center items-center sm:items-start sm:gap-10 mb-10 sm:mb-0">
         <div>
           <img
@@ -23,11 +23,12 @@ export function Dashboard() {
           <i className="bx  bxs-info-circle cursor-pointer"></i>
         </div>
       </div>
-      <div className="flex gap-5">
-        <div className="flex flex-col justify-center gap-5 items-center">
+
+      <div className="flex justify-center-safe gap-10">
+        <div className=" flex flex-col justify-center gap-5 items-center">
           <div className="flex items-center justify-center flex-wrap gap-3 sm:gap-10">
             <div className="text-center">
-              <p className="text-3xl sm:text-4xl">Welcome back!</p>
+              <p className="text-3xl sm:text-5xl">Welcome back!</p>
               <p className="sm:text-xl italic">
                 Every moment is a letter to <br />
                 your future self.
@@ -80,9 +81,44 @@ export function Dashboard() {
             </div>
           </div>
         </div>
-        <div className="hidden sm:block">
+        <div className="hidden sm:flex items-center flex-col">
           <div>
-            
+            <div className="bg-[var(--primary-color)] text-[var(--cream-color)] rounded-md p-35 shadow-lg"></div>
+          </div>
+          <div>
+            <p className="text-center italic text-xl mt-6 mb-2">
+              Your future messages, by date.
+            </p>
+            <div className="border-1 border-[#CC7676] w-full"></div>
+            <ul>
+              {letters.map((letter, index) => {
+                return (
+                  <li key={index} className="my-2 text-lg">
+                    • {letter}
+                  </li>
+                );
+              })}
+            </ul>
+            <div className="w-full flex justify-end mb-10">
+              <p className="mt-5 font-bold text-[var(--primary-color)] text-lg cursor-pointer italic">
+                See more
+              </p>
+            </div>
+
+            <p className="text-center italic text-xl mt-6 mb-2">
+              Your Journey So Far
+            </p>
+            <div className="border-1 border-[#CC7676] w-full"></div>
+            <ul>
+             <li className="my-2 text-lg">• Total Letters Written: 15</li>
+             <li className="my-2 text-lg">• Letters Unlocked: 4</li>
+             <li className="my-2 text-lg">• Next Unlock In: 50 days</li>
+            </ul>
+            <div className="w-full flex justify-end">
+              <p className="font-bold text-[var(--primary-color)] mt-5 text-lg cursor-pointer italic">
+                See more
+              </p>
+            </div>
           </div>
         </div>
       </div>

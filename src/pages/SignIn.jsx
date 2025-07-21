@@ -1,5 +1,5 @@
 import { Input } from "../components/Input";
-import { SubmitButton } from "../components/SubmitButton";
+import { Form } from "../components/Form";
 
 export function SignIn() {
   document.title = "Sign In - Sincerely, Me";
@@ -27,40 +27,38 @@ export function SignIn() {
           <p className="sm:text-xl">Sincerely, Me</p>
         </div>
         <div>
-          <form>
-            <p className="text-3xl sm:text-5xl text-center">Welcome</p>
-            <p className="text-xl sm:text-3xl text-center">
-              Let’s create your account
-            </p>
-            <div className="border-1 border-[#CC7676] my-2 sm:my-5"></div>
-            <Input
-              label="email"
-              type="email"
-              id="email"
-              name="email"
-              placeholder="Enter your email"
-              required
-            />
-            <Input
-            label="password"
-            type="password"
-            id="password"
-            name="password"
-            placeholder="Enter your password"
-            required
-            isPassword={true}
-            ></Input>
-            <p className="text-end mt-2 sm:text-xl mb-5 sm:mb-8">forgot password?</p>
-            <SubmitButton label="Sign In" />
-          </form>
-          <p className="text-center my-4 sm:text-xl">Already have an account?<br></br> <a href="#" className="text-[var(--primary-color)]">Sign In</a></p>
-          <div className="flex justify-center items-center gap-2 mb-4">
-            <div className="bg-[#CC7676] w-5 h-5 p-4 rounded-full opacity-50"></div>
-            <div className="bg-[#CC7676] w-5 h-5 p-4 rounded-full opacity-80"></div>
-            <div className="bg-[#CC7676] w-5 h-5 p-4 rounded-full"></div>
+          <Form
+            greeting="Welcome"
+            subGreeting="Let's create your account"
+            children={
+              <>
+                <Input
+                  type="email"
+                  label="email"
+                  placeholder="Enter your email"
+                  required={true}
+                />
+                <Input
+                  type="password"
+                  label="password"
+                  placeholder="Enter your password"
+                  required={true}
+                  isPassword={true}
+                />
+              </>
+            }
+            submitLabel="Sign In"
+            bottomLabel="Log In"
+            bottomQuestion="Already have an account?"
+            bottomLink="/login"
+          />
+          <div className="flex justify-center items-center gap-2 mb-4 mt-4">
+            <div className="bg-[#CC7676] w-5 h-5 p-3 sm:p-4 rounded-full opacity-50"></div>
+            <div className="bg-[#CC7676] w-5 h-5 p-3 sm:p-4 rounded-full opacity-80"></div>
+            <div className="bg-[#CC7676] w-5 h-5 p-3 sm:p-4 rounded-full"></div>
           </div>
         </div>
-      </div> 
+      </div>
     </div>
   );
 }

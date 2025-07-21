@@ -55,7 +55,7 @@ export function Dashboard() {
                 })}
               </div>
               <div className="flex justify-center sm:justify-end sm:items-center w-full">
-                <button className="cursor-pointer bg-[var(--primary-color)] text-[var(--cream-color)] py-1 px-4 rounded-md mb-20 sm:mb-10 sm:text-lg">
+                <button className="cursor-pointer bg-[var(--primary-color)] text-[var(--cream-color)] py-1 px-4 rounded-md mb-5 sm:mb-10 sm:text-lg">
                   See more
                 </button>
               </div>

@@ -4,7 +4,7 @@ import { Form } from "../components/Form";
 export function SignIn() {
   document.title = "Sign In - Sincerely, Me";
   return (
-    <div className="flex flex-wrap gap-5 sm:gap-0">
+    <div className="flex flex-wrap gap-5 sm:gap-0 select-none">
       <div>
         <div className="sm:w-160 h-50 sm:h-screen w-screen flex flex-col justify-center">
           <div className="bg-[var(--primary-color)] h-screen sm:h-165 sm:ml-5 flex flex-col justify-center items-center sm:rounded-lg">

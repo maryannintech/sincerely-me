@@ -5,7 +5,7 @@ import { Form } from "../components/Form";
 export function LogIn() {
   document.title = "Log In - Sincerely, Me";
   return (
-    <div className="flex flex-col justify-center items-center min-h-screen">
+    <div className="flex flex-col justify-center items-center min-h-screen select-none">
       <div className="flex justify-center items-center gap-2 sm:mt-5">
         <img src="src\assets\images\logo.png" className="w-10"></img>
         <p className="sm:text-xl">Sincerely, Me</p>

@@ -11,13 +11,13 @@ export function Form({
 }) {
   return (
     <>
-      <form className="sm:mt-10">
+      <form className="mt-5 sm:mt-10">
         <p className="text-3xl sm:text-5xl text-center">{greeting}</p>
         <p className="text-xl sm:text-3xl text-center">{subGreeting}</p>
         <div className="border-1 border-[#CC7676] my-2 sm:my-5"></div>
         {children}
         <p className="text-end mt-2 sm:text-xl mb-5 sm:mb-8">
-          {isLogin ? "Forgot your password?" : ""}
+          {isLogin ? "forgot your password?" : ""}
         </p>
         <SubmitButton label={submitLabel} />
       </form>

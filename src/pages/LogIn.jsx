@@ -17,6 +17,7 @@ export function LogIn() {
           submitLabel="Log In"
           bottomLabel="Sign In"
           bottomQuestion="Don't have an account?"
+          isLogin={true}
           children={
             <>
               <Input

@@ -5,7 +5,7 @@ import { LogIn } from './pages/LogIn'
 function App() {
   return (
     <>
-     <SignIn />
+     <LogIn />
     </>
   )
 }

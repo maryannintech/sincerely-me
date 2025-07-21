@@ -8,7 +8,7 @@ export function Loading() {
         <img src="src/assets/images/logo.png" className="w-20 sm:w-40"></img>
         <p className="ml-3 sm:ml-5 text-2xl sm:text-5xl">Sincerely, Me</p>
       </div>
-      <p className="mt-10 sm:mt-20 font-bold animate-pulse sm:text-xl text-right">Preparing your letters...</p>
+      <p className="mt-10 sm:mt-20 italic font-bold animate-pulse sm:text-xl text-right">Preparing your letters...</p>
       <Footer />
     </div>
   );

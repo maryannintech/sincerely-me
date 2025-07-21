@@ -18,9 +18,12 @@ export function Form({
         <p className="text-end mt-2 sm:text-xl mb-5 sm:mb-8">
           {isLogin ? "forgot your password?" : ""}
         </p>
-       <button type="submit" className="bg-[var(--primary-color)] text-[var(--cream-color)] py-2 sm:py-3 px-4 sm:px-6 rounded-md text-lg sm:text-xl w-full hover:bg-[var(--light-pink)] transition-colors duration-300">
-         {submitLabel}
-       </button>
+        <button
+          type="submit"
+          className="bg-[var(--primary-color)] text-[var(--cream-color)] py-2 sm:py-3 px-4 sm:px-6 rounded-md sm:text-xl w-full hover:bg-[var(--light-pink)] transition-colors duration-300"
+        >
+          {submitLabel}
+        </button>
       </form>
       <p className="text-center sm:text-xl mt-2 sm:mt-4">
         {bottomQuestion}

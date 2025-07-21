@@ -8,8 +8,8 @@ export function Dashboard() {
   ];
   document.title = "Dashboard - Sincerely Me";
   return (
-    <div className="sm:p-10 px-4">
-      <div className="flex sm:flex-col justify-center items-center sm:items-start sm:gap-10 mb-10">
+    <div className="sm:py-5 sm:px-10 px-4">
+      <div className="flex sm:flex-col justify-center items-center sm:items-start sm:gap-10 mb-10 sm:mb-0">
         <div>
           <img
             src="src/assets/images/logo.png"
@@ -23,53 +23,66 @@ export function Dashboard() {
           <i className="bx  bxs-info-circle cursor-pointer"></i>
         </div>
       </div>
-      <div className="flex flex-col justify-center gap-5 items-center">
-        <div className="flex items-center justify-center flex-wrap gap-3 sm:gap-10">
-          <div className="text-center">
-            <p className="text-3xl sm:text-4xl">Welcome back!</p>
-            <p className="sm:text-xl italic">
-              Every moment is a letter to <br />
-              your future self.
-            </p>
+      <div className="flex gap-5">
+        <div className="flex flex-col justify-center gap-5 items-center">
+          <div className="flex items-center justify-center flex-wrap gap-3 sm:gap-10">
+            <div className="text-center">
+              <p className="text-3xl sm:text-4xl">Welcome back!</p>
+              <p className="sm:text-xl italic">
+                Every moment is a letter to <br />
+                your future self.
+              </p>
+            </div>
+            <div className="bg-[var(--primary-color)] rounded-md pb-1 cursor-pointer">
+              <img
+                src="src/assets/images/envelope.png"
+                className="w-35 sm:w-50"
+              ></img>
+              <p className="text-center text-[var(--cream-color)]">
+                Write a new letter
+              </p>
+            </div>
           </div>
-          <div className="bg-[var(--primary-color)] rounded-md pb-1 cursor-pointer">
-            <img
-              src="src/assets/images/envelope.png"
-              className="w-35 sm:w-45"
-            ></img>
-            <p className="text-center text-[var(--cream-color)]">
-              Write a new letter
-            </p>
+          <div>
+            <div className="sm:ml-20 flex flex-col items-center sm:items-baseline justify-baseline gap-5">
+              <p className="sm:text-2xl text-xl text-left">
+                Letters for Today!
+              </p>
+              <div className="flex flex-wrap gap-5 items-center justify-center sm:justify-start w-fit">
+                {letters.map((letter, index) => {
+                  return <LetterCard key={index} label={letter} />;
+                })}
+                <div className="flex justify-center sm:justify-end sm:items-center w-full">
+                  <button className="cursor-pointer bg-[var(--primary-color)] text-[var(--cream-color)] py-1 px-2 rounded-md mb-5">
+                    See more
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div className="sm:ml-20 flex flex-col items-center sm:items-baseline justify-baseline gap-5">
+              <p className="sm:text-2xl text-xl text-left">Future's Mailbag</p>
+              <div className="flex flex-wrap gap-5 items-center justify-center sm:justify-start w-fit">
+                {letters.map((letter, index) => {
+                  return (
+                    <LetterCard
+                      key={index}
+                      label={letter}
+                      letterLocked={true}
+                    />
+                  );
+                })}
+                <div className="flex justify-center sm:justify-end sm:items-center w-full">
+                  <button className="cursor-pointer bg-[var(--primary-color)] text-[var(--cream-color)] py-1 px-2 rounded-md mb-20 sm:mb-10">
+                    See more
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <div>
-          <div className="sm:ml-20 flex flex-col items-center sm:items-baseline justify-baseline gap-5">
-            <p className="sm:text-2xl text-xl text-left">Letters for Today!</p>
-            <div className="flex flex-wrap gap-5 items-center justify-center sm:justify-start w-fit">
-              {letters.map((letter, index) => {
-                return <LetterCard key={index} label={letter} />;
-              })}
-              <div className="flex justify-center sm:justify-end sm:items-center w-full">
-                <button className="cursor-pointer bg-[var(--primary-color)] text-[var(--cream-color)] py-1 px-2 rounded-md mb-5">
-                  See more
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className="sm:ml-20 flex flex-col items-center sm:items-baseline justify-baseline gap-5">
-            <p className="sm:text-2xl text-xl text-left">Future's Mailbag</p>
-            <div className="flex flex-wrap gap-5 items-center justify-center sm:justify-start w-fit">
-              {letters.map((letter, index) => {
-                return (
-                  <LetterCard key={index} label={letter} letterLocked={true} />
-                );
-              })}
-              <div className="flex justify-center sm:justify-end sm:items-center w-full">
-                <button className="cursor-pointer bg-[var(--primary-color)] text-[var(--cream-color)] py-1 px-2 rounded-md mb-20 sm:mb-10">
-                  See more
-                </button>
-              </div>
-            </div>
+        <div className="hidden sm:block">
+          <div>
+            
           </div>
         </div>
       </div>

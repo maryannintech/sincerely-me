@@ -10,7 +10,7 @@ export function LogIn() {
         <img src="src\assets\images\logo.png" className="w-10"></img>
         <p className="sm:text-xl">Sincerely, Me</p>
       </div>
-      <div className="flex flex-col sm:w-180 gap-8 sm:gap-12 mx-auto sm:pb-10">
+      <div className="flex flex-col sm:w-180 gap-8 sm:gap-12 mx-auto sm:pb-10 soft-popup">
         <Form
           greeting="Welcome back!"
           subGreeting="Enter your details"

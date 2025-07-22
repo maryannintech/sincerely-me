@@ -10,7 +10,7 @@ export function Form({
 }) {
   return (
     <>
-      <form className="mt-5 sm:mt-10">
+      <form className="mt-5 sm:mt-10 ">
         <p className="text-3xl sm:text-5xl text-center">{greeting}</p>
         <p className="text-xl sm:text-3xl text-center">{subGreeting}</p>
         <div className="border-1 border-[#CC7676] my-2 sm:my-5"></div>

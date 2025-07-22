@@ -6,7 +6,7 @@ export function MakeLetter() {
     <div className="sm:p-10 px-4 select-none">
       <Navbar />
       <div>
-        <form className="flex flex-col items-center justify-center">
+        <form className="flex flex-col items-center justify-center soft-popup">
           <label htmlFor="title" className="text-3xl sm:text-5xl">
             Write a letter
           </label>

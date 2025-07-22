@@ -1,6 +1,5 @@
 import { Input } from "../components/Input";
 import { Form } from "../components/Form";
-import { Link } from "react-router-dom";
 
 export function SignIn() {
   document.title = "Sign In - Sincerely, Me";
@@ -27,7 +26,7 @@ export function SignIn() {
           <img src="src\assets\images\logo.png" className="w-10"></img>
           <p className="sm:text-xl">Sincerely, Me</p>
         </div>
-        <div>
+        <div className="soft-popup">
           <Form
             greeting="Welcome"
             subGreeting="Let's create your account"

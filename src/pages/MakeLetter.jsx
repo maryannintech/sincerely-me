@@ -1,11 +1,12 @@
 import { Navbar } from "../components/Navbar";
 
 export function MakeLetter() {
+  document.title = "Write a letter - Sincerely, Me";
   return (
     <div className="sm:p-10 px-4 select-none">
       <Navbar />
       <div>
-        <form className="flex flex-col items-center justify-center items-center">
+        <form className="flex flex-col items-center justify-center">
           <label htmlFor="title" className="text-3xl sm:text-5xl">
             Write a letter
           </label>

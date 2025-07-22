@@ -26,7 +26,11 @@ export function MakeLetter() {
             ></input>
             <p className="sm:text-4xl sm:ml-1"> me,</p>
           </div>
-          <textarea className="sm:text-2xl border-5 border-[var(--primary-color)] rounded-md p-2 mt-5 sm:w-230 h-80 w-60 sm:h-120 resize-none" required></textarea>
+          <textarea
+            className="sm:text-2xl border-5 border-[var(--primary-color)] rounded-md p-2 mt-5 sm:w-230 h-80 w-60 sm:h-120 resize-none text-justify"
+            placeholder="Share your thoughts, dreams, hopes, or advice with your future self..."
+            required
+          ></textarea>
           <button
             className="flex items-center gap-2 mt-5 sm:w-230 justify-end mb-20 sm:mb-5 cursor-pointer hover:opacity-80 transition-opacity"
             type="submit"

@@ -7,7 +7,7 @@ export function LogIn() {
   return (
     <div className="flex flex-col justify-center items-center min-h-screen select-none">
       <div className="flex justify-center items-center gap-2 sm:mt-5">
-        <img src="src\assets\images\logo.png" className="w-10"></img>
+        <img src="/images/logo.png" className="w-10"></img>
         <p className="sm:text-xl">Sincerely, Me</p>
       </div>
       <div className="flex flex-col sm:w-180 gap-8 sm:gap-12 mx-auto sm:pb-10 soft-popup">
@@ -17,7 +17,7 @@ export function LogIn() {
           submitLabel="Log In"
           bottomLabel="Sign In"
           bottomQuestion="Don't have an account?"
-          bottomLink="/signin"
+          bottomLink="/"
           isLogin={true}
           children={
             <>

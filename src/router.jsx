@@ -3,21 +3,36 @@ import { SignIn } from "./pages/SignIn";
 import { LogIn } from "./pages/LogIn";
 import { Dashboard } from "./pages/Dashboard";
 import { MakeLetter } from "./pages/MakeLetter";
+import { ErrorPage } from "./pages/ErrorPage";
+import { AppLayout } from "./AppLayout";
+import { About } from "./pages/About";
+import { AllLetters } from "./pages/AllLetters";
 import App from "./App";
-import { ErrorPage } from "./components/ErrorPage";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <App/>,
+  },
+  {
+    path: "/signin",
+    element: <SignIn />,
+  },
+  {
+    path: "/login",
+    element: <LogIn />,
+  },
+  {
+    path: "/app",
+    element: <AppLayout />,
     errorElement: <ErrorPage />,
     children: [
-      { path: "/signin", element: <SignIn /> },
-      { path: "/login", element: <LogIn /> },
-      { path: "/dashboard", element: <Dashboard /> },
-      { path: "/writeLetter", element: <MakeLetter /> },
-      { path: "/allLetters", element: <App /> },
-      { path: "/about", element: <App /> },
+      { path: "dashboard", element: <Dashboard /> },
+      { path: "write", element: <MakeLetter /> },
+      { path: "makeletters", element: <MakeLetter/> },
+      { path: "about", element: <About /> },
+      { path: "all-letters", element: <AllLetters /> },
+
     ],
   },
 ]);

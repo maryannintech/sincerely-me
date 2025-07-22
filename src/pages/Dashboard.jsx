@@ -1,4 +1,6 @@
 import { LetterCard } from "../components/LetterCard";
+import { Link } from "react-router-dom";
+import { SeeMoreButton } from "../components/SeeMoreButton";
 
 
 export function Dashboard() {
@@ -42,9 +44,7 @@ export function Dashboard() {
                 })}
               </div>
               <div className="flex justify-center sm:justify-end sm:items-center w-full">
-                <button className="cursor-pointer bg-[var(--primary-color)] text-[var(--cream-color)] py-1 px-4 rounded-md mb-5 sm:mb-10 sm:text-lg">
-                  See more
-                </button>
+                <SeeMoreButton />
               </div>
             </div>
             <div className="sm:ml-20 flex flex-col items-center sm:items-baseline justify-baseline gap-5">
@@ -61,9 +61,7 @@ export function Dashboard() {
                 })}
               </div>
               <div className="flex justify-center sm:justify-end sm:items-center w-full">
-                <button className="cursor-pointer bg-[var(--primary-color)] text-[var(--cream-color)] py-1 px-4 rounded-md mb-20 sm:mb-10 sm:text-lg">
-                  See more
-                </button>
+                <SeeMoreButton />
               </div>
             </div>
           </div>
@@ -87,9 +85,11 @@ export function Dashboard() {
               })}
             </ul>
             <div className="w-full flex justify-end mb-10">
-              <p className="mt-5 font-bold text-[var(--primary-color)] text-lg cursor-pointer italic ">
-                See more
-              </p>
+              <Link to={"/app/all-letters"}>
+                <p className="mt-5 font-bold text-[var(--primary-color)] text-lg cursor-pointer italic ">
+                  See more
+                </p>
+              </Link>
             </div>
 
             <p className="text-center italic text-xl mt-6 mb-2">
@@ -101,11 +101,7 @@ export function Dashboard() {
               <li className="my-2 text-lg">• Letters Unlocked: 4</li>
               <li className="my-2 text-lg">• Next Unlock In: 50 days</li>
             </ul>
-            <div className="w-full flex justify-end">
-              <p className="font-bold text-[var(--primary-color)] mt-5 text-lg cursor-pointer italic ">
-                See more
-              </p>
-            </div>
+
           </div>
         </div>
       </div>

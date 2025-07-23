@@ -6,31 +6,15 @@ export function AllLetters() {
   const [showSearch, setShowSearch] = useState(false);
 
   const letters = [
-    "A Letter to My Future Self",
-    "Reflections on Today's Journey",
-    "Things I'm Grateful For",
-    "My Dreams and Aspirations",
-    "Lessons I've Learned This Year",
-    "To the Person I Want to Become",
-    "Memories Worth Keeping",
-    "Goals for Next Month",
-    "What Makes Me Happy",
-    "A Note from My Heart",
-    "Dear 30-Year-Old Me",
-    "Thoughts on Love and Life",
-    "My Current Struggles",
-    "Things I Want to Remember",
-    "Advice for Tough Times",
-    "Celebrating Small Victories",
-    "My Journey So Far",
-    "Dreams I'm Chasing",
-    "Letters from My Twenties",
-    "Hope for Tomorrow",
-    "Gratitude in Dark Times",
-    "My Creative Awakening",
-    "Building Better Habits",
-    "Learning to Love Myself",
-    "Adventures I Want to Take",
+    { title: "A Letter to My Future Self", isLocked: false },
+    { title: "Reflections on Today's Journey", isLocked: false },
+    { title: "Things I'm Grateful For", isLocked: true },
+    { title: "My Dreams and Aspirations", isLocked: false },
+    { title: "Lessons I've Learned This Year", isLocked: true },
+    { title: "Things I Want to Remember", isLocked: false },
+    { title: "Advice for Tough Times", isLocked: true },
+    { title: "Celebrating Small Victories", isLocked: false },
+    { title: "My Journey So Far", isLocked: true },
   ];
 
   function handleScrollToTop() {
@@ -123,7 +107,8 @@ export function AllLetters() {
             return (
               <LetterCard
                 key={index}
-                label={letter}
+                label={letter.title}
+                letterLocked={letter.isLocked}
                 className="mb-4"
               />
             );

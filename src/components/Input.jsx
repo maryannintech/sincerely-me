@@ -1,4 +1,4 @@
-
+import { useState } from "react";
 
 export function Input({
   label,
@@ -9,13 +9,14 @@ export function Input({
   placeholder,
   isPassword,
 }) {
+  const [showPassword, setShowPassword] = useState(false);
   return (
     <div className="mt-3 sm:mt-5">
       <label htmlFor={id} className=" sm:text-2xl">
         {label}
         <div className="flex items-center gap-2 justify-center">
           <input
-            type={type}
+            type={isPassword && !showPassword ? "password" : "text"}
             id={id}
             name={name}
             required={required}
@@ -25,9 +26,10 @@ export function Input({
           {isPassword && (
             <button
               type="button"
+              onClick={isPassword ? () => setShowPassword(!showPassword) : null}
               className="text-[var(--primary-color)] text-2xl sm:text-3xl"
             >
-              <i className='bx  bxs-lock'  ></i> 
+              <i className={`bx ${showPassword ? 'bxs-lock-open' : 'bxs-lock'}`}></i>
             </button>
           )}
         </div>

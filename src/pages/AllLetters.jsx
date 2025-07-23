@@ -4,11 +4,39 @@ export function AllLetters() {
   document.title = "All Letters - Sincerely, Me";
   const [showSearch, setShowSearch] = useState(false);
 
+  const letters = [
+    "A Letter to My Future Self",
+    "Reflections on Today's Journey",
+    "Things I'm Grateful For",
+    "My Dreams and Aspirations",
+    "Lessons I've Learned This Year",
+    "To the Person I Want to Become",
+    "Memories Worth Keeping",
+    "Goals for Next Month",
+    "What Makes Me Happy",
+    "A Note from My Heart",
+    "Dear 30-Year-Old Me",
+    "Thoughts on Love and Life",
+    "My Current Struggles",
+    "Things I Want to Remember",
+    "Advice for Tough Times",
+    "Celebrating Small Victories",
+    "My Journey So Far",
+    "Dreams I'm Chasing",
+    "Letters from My Twenties",
+    "Hope for Tomorrow",
+    "Gratitude in Dark Times",
+    "My Creative Awakening",
+    "Building Better Habits",
+    "Learning to Love Myself",
+    "Adventures I Want to Take",
+  ];
+
   function handleScrollToTop() {
     window.scrollTo({
       top: 0,
       behavior: "smooth",
-    })
+    });
   }
 
   return (
@@ -37,6 +65,8 @@ export function AllLetters() {
                 <input
                   required
                   type="text"
+                  id="search-title"
+                  name="search-title"
                   placeholder="Search for title"
                   className="block text-black bg-[var(--cream-color)] p-2 rounded-lg sm:w-80"
                 />
@@ -50,6 +80,7 @@ export function AllLetters() {
                 Date you wrote
                 <input
                   type="date"
+                  name="date-written"
                   id="date-written"
                   className="block text-black bg-[var(--cream-color)] p-2 rounded-lg "
                 />
@@ -64,6 +95,7 @@ export function AllLetters() {
                 <input
                   type="date"
                   id="date-open"
+                  name="date-open"
                   className="block text-black bg-[var(--cream-color)] p-2 rounded-lg "
                 />
               </label>
@@ -77,6 +109,12 @@ export function AllLetters() {
               Search
             </button>
           </div>
+          <div>
+            <p className="hidden text-lg sm:text-3xl sm:block text-center sm:text-left">A-Z</p>
+          </div>
+        </div>
+         <div>
+          <p className="pl-3 sm:hidden text-lg sm:text-2xl flex">A-Z</p>
         </div>
       </div>
 

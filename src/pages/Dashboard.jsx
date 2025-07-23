@@ -2,6 +2,7 @@ import { LetterCard } from "../components/LetterCard";
 import { Link } from "react-router-dom";
 import { SeeMoreButton } from "../components/SeeMoreButton";
 import { useNavigate } from "react-router-dom";
+import { ScrollToTop } from "../components/ScrollToTop";
 
 export function Dashboard() {
   let navigate = useNavigate();
@@ -107,6 +108,7 @@ export function Dashboard() {
           </div>
         </div>
       </div>
+      <ScrollToTop />
     </div>
   );
 }

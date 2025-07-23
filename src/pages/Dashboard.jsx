@@ -13,7 +13,7 @@ export function Dashboard() {
   ];
   document.title = "Dashboard - Sincerely Me";
   return (
-    <div className="sm:p-10 px-4 select-none">
+    <div className="sm:p-10 px-4 select-none sm:pb-0 pb-20">
       <div className=" flex justify-evenly gap-10 soft-popup">
         <div className="left flex flex-col justify-center gap-5 items-center ">
           <div className="flex items-center justify-center flex-wrap gap-3 sm:gap-10">

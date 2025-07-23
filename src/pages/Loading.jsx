@@ -1,7 +1,7 @@
 import { Footer } from "../components/Footer";
 
 export function Loading() {
-  document.title = "Sincerely Me";
+  document.title = "Sincerely, Me";
   return (
     <div className="flex flex-col justify-center items-center m-auto h-screen select-none">
       <div className="flex justify-center items-center">

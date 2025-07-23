@@ -11,14 +11,14 @@ export function Dashboard() {
     "Reflections on Today's Journey",
     "Things I'm Grateful For",
   ];
-  document.title = "Dashboard - Sincerely Me";
+  document.title = "Dashboard - Sincerely, Me";
   return (
     <div className="sm:p-10 px-4 select-none sm:pb-0 pb-20">
       <div className=" flex justify-evenly gap-10 soft-popup">
         <div className="left flex flex-col justify-center gap-5 items-center ">
           <div className="flex items-center justify-center flex-wrap gap-3 sm:gap-10">
             <div className="text-center">
-              <p className="text-3xl sm:text-5xl">Welcome back!</p>
+              <p className="text-3xl sm:text-5xl">Welcome!</p>
               <p className="sm:text-xl italic">
                 Every moment is a letter to <br />
                 your future self.

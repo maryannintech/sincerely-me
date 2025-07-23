@@ -24,7 +24,7 @@ export function About() {
           <li>Receive your letter when the time comes</li>
         </ol>
       </div>
-      <div className="w-fit mx-auto mt-8 sm:mt-10 mb-20 sm:mb-0">
+      <div className="w-fit mx-auto mt-4 sm:mt-10 mb-20 sm:mb-0">
         <p className="text-lg sm:text-2xl text-center text-[var(--primary-color)] font-semibold">
           Your Privacy & Security
         </p>

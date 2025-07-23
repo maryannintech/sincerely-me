@@ -68,3 +68,17 @@ body {
   box-shadow: 0 0 10px rgba(184, 76, 101, 0.15);
   transition: box-shadow 0.4s ease;
 }
+
+.navbar-icon {
+  transition: all 0.3s ease;
+  padding: 3px;
+  border-radius: 8px;
+  display: inline-block;
+}
+
+.navbar-icon:hover {
+  transform: translateY(-2px) scale(1.1);
+  color: var(--light-pink);
+  background-color: rgba(184, 76, 101, 0.1);
+  box-shadow: 0 4px 10px rgba(184, 76, 101, 0.2);
+}

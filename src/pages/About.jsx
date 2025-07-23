@@ -10,7 +10,7 @@ export function About() {
       </div>
       <p className="text-center text-lg px-5 sm:w-1/2 sm:mx-auto mt-5 sm:text-2xl">
         Sincerely, Me is a digital letter-writing platform that allows you to
-        send messages to your future self. Write about your current thoughts,
+        send letters to your future self. Write about your current thoughts,
         dreams, and experiences, then schedule them to be delivered at a later
         date.
       </p>
@@ -23,6 +23,16 @@ export function About() {
           <li>Choose a future date for delivery</li>
           <li>Receive your letter when the time comes</li>
         </ol>
+      </div>
+      <div className="w-fit mx-auto mt-8 sm:mt-10 mb-20 sm:mb-0">
+        <p className="text-lg sm:text-2xl text-center text-[var(--primary-color)] font-semibold">
+          Your Privacy & Security
+        </p>
+        <p className="text-center text-base sm:text-lg px-5 sm:w-3/4 sm:mx-auto mt-2">
+          Your letters are securely stored using Supabase, ensuring your
+          personal thoughts and messages remain private and protected. We never
+          share your data with third parties.
+        </p>
       </div>
 
       <Footer />

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { LetterCard } from "../components/LetterCard";
 
 export function AllLetters() {
   document.title = "All Letters - Sincerely, Me";
@@ -110,11 +111,23 @@ export function AllLetters() {
             </button>
           </div>
           <div>
-            <p className="hidden text-lg sm:text-3xl sm:block text-center sm:text-left">A-Z</p>
+            <p className="hidden text-lg sm:text-3xl sm:block text-center sm:text-left">
+              A-Z
+            </p>
           </div>
         </div>
-         <div>
-          <p className="pl-3 sm:hidden text-lg sm:text-2xl flex">A-Z</p>
+
+        <p className="pl-3 sm:hidden text-lg sm:text-2xl flex">A-Z</p>
+        <div className="mt-3 sm:mt-5 flex flex-wrap justify-center items-center sm:w-200 mx-auto gap-5 mb-20">
+          {letters.map((letter, index) => {
+            return (
+              <LetterCard
+                key={index}
+                label={letter}
+                className="mb-4"
+              />
+            );
+          })}
         </div>
       </div>
 

@@ -25,8 +25,8 @@ export function AllLetters() {
   }
 
   return (
-    <div className="sm:p-10 px-4 select-none relative">
-      <p className="text-center text-2xl sm:text-4xl soft-popup">
+    <div className="sm:p-10 px-4 select-none relative soft-popup">
+      <p className="text-center text-2xl sm:text-4xl ">
         All your letters
       </p>
       <div>

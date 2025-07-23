@@ -1,8 +1,14 @@
 import { Input } from "../components/Input";
 import { Form } from "../components/Form";
+import { useNavigate } from "react-router-dom";
 
 export function SignIn() {
   document.title = "Sign In - Sincerely, Me";
+  let navigate = useNavigate();
+  function handleSubmit(event) {
+    event.preventDefault();
+    navigate("/app/dashboard");
+  }
   return (
     <div className="flex flex-wrap gap-5 sm:gap-0 select-none">
       <div>
@@ -29,6 +35,7 @@ export function SignIn() {
         <div className="soft-popup">
           <Form
             greeting="Welcome"
+            handleSubmit={handleSubmit}
             subGreeting="Let's create your account"
             children={
               <>

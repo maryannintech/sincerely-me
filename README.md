@@ -2,7 +2,7 @@
 
 A digital letter-writing platform that allows you to send messages to your future self. Write about your current thoughts, dreams, and experiences, then schedule them to be delivered at a later date.
 
-## 🌱 Project Evolution
+## 📮 Project Evolution
 
 This project is the full realization of the concept introduced in my [coming soon page](https://github.com/maryannintech/coming-soon-page) - my first project using Tailwind CSS. What started as a simple landing page as now grown into a complete, functional web application. The coming soon page served as the foundation for the design language and user experience you see today.
 

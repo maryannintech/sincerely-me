@@ -30,7 +30,7 @@ export function LogIn() {
       if (result.success) {
         navigate("/app/dashboard");
       } else {
-        setError(result.error.message || "An error occurred during sign in.");
+        setError(result.error || "An error occurred during sign in.");
 
         const newTimeout = setTimeout(() => {
           setError("");

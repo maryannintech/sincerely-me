@@ -33,7 +33,7 @@ export function SignIn() {
         navigate("/app/dashboard");
       } else {
         setLoading(false);
-        setError(result.error.message || "An error occurred during sign up.");
+        setError(result.error || "An error occurred during sign up.");
 
         const newTimeout = setTimeout(() => {
           setError("");

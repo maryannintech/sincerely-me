@@ -14,10 +14,8 @@ export const AuthContextProvider = ({ children }) => {
     });
 
     if (error) {
-      console.error("Error signing up:", error);
       return { success: false, error };
     }
-
     return { success: true, data };
   };
 

@@ -11,21 +11,44 @@ export function SignIn() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [errorTimeout, setErrorTimeout] = useState(null);
 
   const { session, signUp } = UserAuth();
 
   async function handleSubmit(event) {
     event.preventDefault();
     setLoading(true);
+
+    if (errorTimeout) {
+      clearTimeout(errorTimeout);
+      setErrorTimeout(null);
+    }
+
     try {
       const result = await signUp(email, password);
 
       if (result.success) {
         setLoading(false);
         navigate("/app/dashboard");
+      } else {
+        setLoading(false);
+        setError(result.error.message || "An error occurred during sign up.");
+
+        const newTimeout = setTimeout(() => {
+          setError("");
+          setErrorTimeout(null);
+        }, 3000);
+        setErrorTimeout(newTimeout);
       }
     } catch (error) {
+      setLoading(false);
       setError(error.message);
+
+      const newTimeout = setTimeout(() => {
+        setError("");
+        setErrorTimeout(null);
+      }, 5000);
+      setErrorTimeout(newTimeout);
     }
   }
 
@@ -66,6 +89,7 @@ export function SignIn() {
                   required={true}
                   handleInputChange={(e) => setEmail(e.target.value)}
                 />
+
                 <Input
                   type="password"
                   label="password"
@@ -74,6 +98,13 @@ export function SignIn() {
                   isPassword={true}
                   handleInputChange={(e) => setPassword(e.target.value)}
                 />
+                {error && (
+                  <div className="error-message-animate">
+                    <p className="text-red-500 sm:text-xl text-center mt-3 bg-red-50 border border-red-200 rounded-md p-3 animate-pulse">
+                      ⚠️ {error}
+                    </p>
+                  </div>
+                )}
               </>
             }
             submitLabel="Sign In"
@@ -81,9 +112,7 @@ export function SignIn() {
             bottomQuestion="Already have an account?"
             bottomLink="/login"
           />
-          {error && (
-            <p className="text-red-500 text-center mt-2">{error}</p>
-          )}
+
           <div className="flex justify-center items-center gap-2 mb-4 mt-4">
             <div className="bg-[#CC7676] w-5 h-5 p-3 sm:p-4 rounded-full opacity-50"></div>
             <div className="bg-[#CC7676] w-5 h-5 p-3 sm:p-4 rounded-full opacity-80"></div>

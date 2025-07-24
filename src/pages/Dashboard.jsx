@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { SeeMoreButton } from "../components/SeeMoreButton";
 import { useNavigate } from "react-router-dom";
 import { ScrollToTop } from "../components/ScrollToTop";
+import { UserAuth } from "../context/AuthContext";
+import { useState } from "react";
 
 export function Dashboard() {
   let navigate = useNavigate();
@@ -12,6 +14,8 @@ export function Dashboard() {
     "Reflections on Today's Journey",
     "Things I'm Grateful For",
   ];
+
+  const { session, signOut } = UserAuth();
   document.title = "Dashboard - Sincerely, Me";
   return (
     <div className="sm:p-10 px-4 select-none sm:pb-0 pb-20">

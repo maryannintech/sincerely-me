@@ -1,6 +1,20 @@
 import { Link } from "react-router-dom";
+import { UserAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 export function Navbar() {
+  const { session, signOut } = UserAuth();
+  let navigate = useNavigate();
+  async function handleSignOut() {
+    try {
+      const result = await signOut();
+      if (result.success) {
+        navigate("/signin");
+      }
+    } catch (error) {
+      console.log("Error signing out:", error);
+    }
+  }
   return (
     <div className="relative z-50 flex sm:flex-col justify-center items-center sm:items-start sm:gap-10 mb-10 sm:mb-0 sm:pl-10 sm:pt-5">
       <div>
@@ -19,9 +33,9 @@ export function Navbar() {
         <Link to={"/app/about"}>
           <i className="bx bxs-info-circle cursor-pointer navbar-icon"></i>
         </Link>
-        <Link to={"/signin"}>
+        <button onClick={handleSignOut}>
           <i className="bx bx-arrow-out-up-square-half rotate-90 cursor-pointer navbar-icon"></i>
-        </Link>
+        </button>
       </div>
     </div>
   );

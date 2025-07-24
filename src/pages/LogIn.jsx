@@ -1,9 +1,55 @@
 import { Input } from "../components/Input";
 import { Footer } from "../components/Footer";
 import { Form } from "../components/Form";
+import { UserAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { ErrorText } from "../components/ErrorText";
+import { useState } from "react";
 
 export function LogIn() {
   document.title = "Log In - Sincerely, Me";
+  const { session, signIn } = UserAuth();
+  const navigate = useNavigate();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [errorTimeout, setErrorTimeout] = useState(null);
+
+  async function handleLogIn(event) {
+    event.preventDefault();
+
+    if (errorTimeout) {
+      clearTimeout(errorTimeout);
+      setErrorTimeout(null);
+    }
+
+    try {
+      const result = await signIn(email, password);
+
+      if (result.success) {
+        navigate("/app/dashboard");
+      } else {
+        setError(result.error.message || "An error occurred during sign in.");
+
+        const newTimeout = setTimeout(() => {
+          setError("");
+          setErrorTimeout(null);
+        }, 3000);
+        setErrorTimeout(newTimeout);
+      }
+    } catch (error) {
+      console.error("Error during login:", error);
+      setError(result.error || "An error occurred during sign up.");
+
+      const newTimeout = setTimeout(() => {
+        setError("");
+        setErrorTimeout(null);
+      }, 3000);
+      setErrorTimeout(newTimeout);
+    }
+  }
+
   return (
     <div className="flex flex-col justify-center items-center min-h-screen select-none">
       <div className="flex justify-center items-center gap-2 sm:mt-5">
@@ -18,6 +64,7 @@ export function LogIn() {
           bottomLabel="Sign In"
           bottomQuestion="Don't have an account?"
           bottomLink="/"
+          handleSubmit={handleLogIn}
           isLogin={true}
           children={
             <>
@@ -26,6 +73,7 @@ export function LogIn() {
                 label="email"
                 placeholder="Enter your email"
                 required={true}
+                handleInputChange={(e) => setEmail(e.target.value)}
               />
               <Input
                 type="password"
@@ -33,7 +81,9 @@ export function LogIn() {
                 placeholder="Enter your password"
                 required={true}
                 isPassword={true}
+                handleInputChange={(e) => setPassword(e.target.value)}
               />
+              {error && <ErrorText message={error} />}
             </>
           }
         />

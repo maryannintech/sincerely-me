@@ -14,7 +14,7 @@ export const AuthContextProvider = ({ children }) => {
     });
 
     if (error) {
-      return { success: false, error };
+      return { success: false, error: error.message };
     }
     return { success: true, data };
   };
@@ -28,13 +28,11 @@ export const AuthContextProvider = ({ children }) => {
       });
 
       if (error) {
-        console.error("Error signing in:", error);
         return { success: false, error: error.message };
       }
-      console.log("Sign in successful:", data);
+
       return { success: true, data };
     } catch (error) {
-      console.error("Error signing in:", error);
       return { success: false, error: error.message };
     }
   };
@@ -53,8 +51,8 @@ export const AuthContextProvider = ({ children }) => {
   const signOut = () => {
     const { error } = supabase.auth.signOut();
     if (error) {
-      console.error("Error signing out:", error);
-      return { success: false, error };
+      console.error("Error signing out:", error.message);
+      return { success: false, error: error.message };
     }
     return { success: true };
   };

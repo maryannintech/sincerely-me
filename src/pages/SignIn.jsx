@@ -3,6 +3,7 @@ import { Form } from "../components/Form";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { UserAuth } from "../context/AuthContext";
+import { ErrorText } from "../components/ErrorText";
 
 export function SignIn() {
   document.title = "Sign In - Sincerely, Me";
@@ -98,13 +99,7 @@ export function SignIn() {
                   isPassword={true}
                   handleInputChange={(e) => setPassword(e.target.value)}
                 />
-                {error && (
-                  <div className="error-message-animate">
-                    <p className="text-red-500 sm:text-xl text-center mt-3 bg-red-50 border border-red-200 rounded-md p-3 animate-pulse">
-                      ⚠️ {error}
-                    </p>
-                  </div>
-                )}
+                {error && <ErrorText message={error} />}
               </>
             }
             submitLabel="Sign In"

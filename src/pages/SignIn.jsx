@@ -1,7 +1,7 @@
 import { Input } from "../components/Input";
 import { Form } from "../components/Form";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { UserAuth } from "../context/AuthContext";
 
 export function SignIn() {
@@ -12,7 +12,7 @@ export function SignIn() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const { session } = UserAuth();
+  const { session, signUp } = UserAuth();
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -64,6 +64,7 @@ export function SignIn() {
                   label="email"
                   placeholder="Enter your email"
                   required={true}
+                  handleInputChange={(e) => setEmail(e.target.value)}
                 />
                 <Input
                   type="password"
@@ -71,6 +72,7 @@ export function SignIn() {
                   placeholder="Enter your password"
                   required={true}
                   isPassword={true}
+                  handleInputChange={(e) => setPassword(e.target.value)}
                 />
               </>
             }

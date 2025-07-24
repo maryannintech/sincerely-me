@@ -8,6 +8,7 @@ export function Input({
   required,
   placeholder,
   isPassword,
+  handleInputChange,
 }) {
   const [showPassword, setShowPassword] = useState(false);
   return (
@@ -18,6 +19,9 @@ export function Input({
           <input
             type={isPassword && !showPassword ? "password" : "text"}
             id={id}
+            onChange={(e) => {
+              handleInputChange(e);
+            }}
             name={name}
             required={required}
             placeholder={placeholder}
@@ -29,7 +33,9 @@ export function Input({
               onClick={isPassword ? () => setShowPassword(!showPassword) : null}
               className="text-[var(--primary-color)] text-2xl sm:text-3xl"
             >
-              <i className={`bx ${showPassword ? 'bxs-lock-open' : 'bxs-lock'}`}></i>
+              <i
+                className={`bx ${showPassword ? "bxs-lock-open" : "bxs-lock"}`}
+              ></i>
             </button>
           )}
         </div>

@@ -81,6 +81,9 @@ export function SignIn() {
             bottomQuestion="Already have an account?"
             bottomLink="/login"
           />
+          {error && (
+            <p className="text-red-500 text-center mt-2">{error}</p>
+          )}
           <div className="flex justify-center items-center gap-2 mb-4 mt-4">
             <div className="bg-[#CC7676] w-5 h-5 p-3 sm:p-4 rounded-full opacity-50"></div>
             <div className="bg-[#CC7676] w-5 h-5 p-3 sm:p-4 rounded-full opacity-80"></div>

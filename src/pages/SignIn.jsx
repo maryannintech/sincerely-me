@@ -1,6 +1,8 @@
 import { Input } from "../components/Input";
 import { Form } from "../components/Form";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { UserAuth } from "../context/AuthContext";
 
 export function SignIn() {
   document.title = "Sign In - Sincerely, Me";
@@ -9,6 +11,15 @@ export function SignIn() {
     event.preventDefault();
     navigate("/app/dashboard");
   }
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const { session } = UserAuth();
+  console.log(session);
+
   return (
     <div className="flex flex-wrap gap-5 sm:gap-0 select-none">
       <div>

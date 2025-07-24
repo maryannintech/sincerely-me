@@ -7,18 +7,27 @@ import { UserAuth } from "../context/AuthContext";
 export function SignIn() {
   document.title = "Sign In - Sincerely, Me";
   let navigate = useNavigate();
-  function handleSubmit(event) {
-    event.preventDefault();
-    navigate("/app/dashboard");
-  }
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
   const { session } = UserAuth();
-  console.log(session);
+
+  async function handleSubmit(event) {
+    event.preventDefault();
+    setLoading(true);
+    try {
+      const result = await signUp(email, password);
+
+      if (result.success) {
+        setLoading(false);
+        navigate("/app/dashboard");
+      }
+    } catch (error) {
+      setError(error.message);
+    }
+  }
 
   return (
     <div className="flex flex-wrap gap-5 sm:gap-0 select-none">

@@ -83,7 +83,6 @@ body {
   box-shadow: 0 4px 10px rgba(184, 76, 101, 0.2);
 }
 
-
 @keyframes errorSlideIn {
   0% {
     opacity: 0;
@@ -114,4 +113,18 @@ body {
 
 .error-message-animate {
   animation: errorSlideIn 0.5s ease-out, errorShake 0.3s ease-in-out 0.5s;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px #ebbaba inset !important;
+  -webkit-text-fill-color: #333 !important;
+  background-color: #ebbaba !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+input:-moz-autofill {
+  background-color: #ebbaba !important;
 }

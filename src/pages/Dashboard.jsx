@@ -92,7 +92,7 @@ export function Dashboard() {
                 <p>
                   {today.format("MMMM")}, {today.format("YYYY")}
                 </p>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 justify-center">
                   <button onClick={() => setToday(today.subtract(1, "month"))}>
                     <i className="bx  bx-caret-left cursor-pointer hover:scale-110"></i>{" "}
                   </button>
@@ -107,7 +107,7 @@ export function Dashboard() {
                   </button>
                 </div>
               </div>
-              <div className="grid grid-cols-7 gap-2 mt-3 place-content-center">
+              <div className="grid grid-cols-7 gap-2 mt-3 place-content-center text-center">
                 {days.map((day, index) => {
                   return (
                     <div key={index}>
@@ -124,11 +124,10 @@ export function Dashboard() {
                             currentMonth
                               ? "font-bold hover:bg-[var(--cream-color)] hover:text-[var(--primary-color)] hover:rounded-md"
                               : "text-pink-200 text-lg hover:text-[var(--cream-color)] "
-                          } ${
-                            today
-                              ? "bg-[var(--cream-color)] text-[var(--primary-color)] rounded-md shadow-md"
-                              : ""
-                          }  hover:scale-110`}
+                          } ${today
+                            ? "bg-[var(--cream-color)] text-[var(--primary-color)] rounded-md shadow-md"
+                            : ""
+                          } ${selectDate.toDate().toDateString() === date.toDate().toDateString() ? "border-2 border-[var(--cream-color)] rounded-md" : ""}  hover:scale-110`}
                           onClick={() => setSelectDate(date)}
                         >
                           {date.date()}

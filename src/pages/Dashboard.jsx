@@ -4,7 +4,7 @@ import { SeeMoreButton } from "../components/SeeMoreButton";
 import { useNavigate } from "react-router-dom";
 import { ScrollToTop } from "../components/ScrollToTop";
 import { UserAuth } from "../context/AuthContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { generateDate } from "../util/calendar";
 import dayjs from "dayjs";
 
@@ -14,12 +14,17 @@ export function Dashboard() {
   const days = ["S", "M", "T", "W", "T", "F", "S"];
   const currentDate = dayjs();
   const [today, setToday] = useState(currentDate);
+  const [selectDate, setSelectDate] = useState(currentDate);
 
   const letters = [
     "A Letter to My Future Self",
     "Reflections on Today's Journey",
     "Things I'm Grateful For",
   ];
+
+  useEffect(() => {
+    console.log("Selected date:", selectDate.format("YYYY-MM-DD"));
+  }, [selectDate]);
 
   const { session, signOut } = UserAuth();
   document.title = "Dashboard - Sincerely, Me";
@@ -83,16 +88,24 @@ export function Dashboard() {
         <div className="right hidden sm:flex items-start flex-col w-90 px-6">
           <div className="w-full">
             <div className="bg-[var(--primary-color)] text-[var(--cream-color)] rounded-md py-5 px-3 shadow-lg w-full h-90 text-xl">
-              <div className="text-center flex justify-between items-center transition-all duration-200">
-                <button onClick={() => setToday(today.subtract(1, 'month'))}>
-                  <i className="bx  bx-caret-left cursor-pointer hover:scale-110"></i>{" "}
-                </button>
+              <div className="text-center flex justify-evenly items-center transition-all duration-200">
                 <p>
                   {today.format("MMMM")}, {today.format("YYYY")}
                 </p>
-                <button onClick={() => setToday(today.add(1, 'month'))}>
-                  <i className="bx  bx-caret-right cursor-pointer hover:scale-110"></i>{" "}
-                </button>
+                <div className="flex items-center gap-2">
+                  <button onClick={() => setToday(today.subtract(1, "month"))}>
+                    <i className="bx  bx-caret-left cursor-pointer hover:scale-110"></i>{" "}
+                  </button>
+                  <button
+                    className="cursor-pointer hover:underline"
+                    onClick={() => setToday(currentDate)}
+                  >
+                    Today
+                  </button>
+                  <button onClick={() => setToday(today.add(1, "month"))}>
+                    <i className="bx  bx-caret-right cursor-pointer hover:scale-110"></i>{" "}
+                  </button>
+                </div>
               </div>
               <div className="grid grid-cols-7 gap-2 mt-3 place-content-center">
                 {days.map((day, index) => {
@@ -116,6 +129,7 @@ export function Dashboard() {
                               ? "bg-[var(--cream-color)] text-[var(--primary-color)] rounded-md shadow-md"
                               : ""
                           }  hover:scale-110`}
+                          onClick={() => setSelectDate(date)}
                         >
                           {date.date()}
                         </p>
@@ -128,7 +142,11 @@ export function Dashboard() {
           </div>
           <div className="w-full">
             <p className="text-center italic text-xl mt-10 mb-2">
-              Your future messages, by date.
+              Your messages, by date.
+              <br />
+              <span className="font-bold text-[var(--primary-color)]">
+                {selectDate.format("MMMM D, YYYY")}
+              </span>
             </p>
             <div className="border-1 border-[#CC7676] w-full"></div>
             <ul>

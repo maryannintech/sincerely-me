@@ -80,7 +80,7 @@ export function Dashboard() {
         <div className="right hidden sm:flex items-start flex-col w-90 px-6">
           <div className="w-full">
             <div className="bg-[var(--primary-color)] text-[var(--cream-color)] rounded-md py-5 px-3 shadow-lg w-full h-75 text-xl">
-              <div className="grid grid-cols-7 gap-2 mt-3">
+              <div className="grid grid-cols-7 gap-2 mt-3 place-content-center">
                 {days.map((day, index) => {
                   return(
                     <div key={index}>
@@ -92,7 +92,7 @@ export function Dashboard() {
                   ({ date, currentMonth, today }, index) => {
                     return (
                       <div key={index}>
-                        <p className="text-center">{date.date()}</p>
+                        <p className={`text-center ${currentMonth ? "font-bold" : "text-pink-200 text-lg"} ${today? "bg-[var(--cream-color)] text-[var(--primary-color)] rounded-md ": ""}`}>{date.date()}</p>
                       </div>
                     );
                   }

@@ -5,9 +5,12 @@ import { useNavigate } from "react-router-dom";
 import { ScrollToTop } from "../components/ScrollToTop";
 import { UserAuth } from "../context/AuthContext";
 import { useState } from "react";
+import { generateDate } from "../util/calendar";
 
 export function Dashboard() {
   let navigate = useNavigate();
+
+  const days = ["S", "M", "T", "W", "T", "F", "S"];
 
   const letters = [
     "A Letter to My Future Self",
@@ -76,7 +79,26 @@ export function Dashboard() {
         </div>
         <div className="right hidden sm:flex items-start flex-col w-90 px-6">
           <div className="w-full">
-            <div className="bg-[var(--primary-color)] text-[var(--cream-color)] rounded-md p-20 shadow-lg w-full h-75"></div>
+            <div className="bg-[var(--primary-color)] text-[var(--cream-color)] rounded-md py-5 px-3 shadow-lg w-full h-75 text-xl">
+              <div className="grid grid-cols-7 gap-2 mt-3">
+                {days.map((day, index) => {
+                  return(
+                    <div key={index}>
+                      <h1 className="text-center font-bold">{day}</h1>
+                       </div>
+                  )
+                })}
+                {generateDate().arrayDate.map(
+                  ({ date, currentMonth, today }, index) => {
+                    return (
+                      <div key={index}>
+                        <p className="text-center">{date.date()}</p>
+                      </div>
+                    );
+                  }
+                )}
+              </div>
+            </div>
           </div>
           <div className="w-full">
             <p className="text-center italic text-xl mt-10 mb-2">

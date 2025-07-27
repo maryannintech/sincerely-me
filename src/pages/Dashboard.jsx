@@ -6,11 +6,14 @@ import { ScrollToTop } from "../components/ScrollToTop";
 import { UserAuth } from "../context/AuthContext";
 import { useState } from "react";
 import { generateDate } from "../util/calendar";
+import dayjs from "dayjs";
 
 export function Dashboard() {
   let navigate = useNavigate();
 
   const days = ["S", "M", "T", "W", "T", "F", "S"];
+  const currentDate = dayjs();
+  const [today, setToday] = useState(currentDate);
 
   const letters = [
     "A Letter to My Future Self",
@@ -79,20 +82,43 @@ export function Dashboard() {
         </div>
         <div className="right hidden sm:flex items-start flex-col w-90 px-6">
           <div className="w-full">
-            <div className="bg-[var(--primary-color)] text-[var(--cream-color)] rounded-md py-5 px-3 shadow-lg w-full h-75 text-xl">
+            <div className="bg-[var(--primary-color)] text-[var(--cream-color)] rounded-md py-5 px-3 shadow-lg w-full h-90 text-xl">
+              <div className="text-center flex justify-between items-center transition-all duration-200">
+                <button onClick={() => setToday(today.subtract(1, 'month'))}>
+                  <i className="bx  bx-caret-left cursor-pointer hover:scale-110"></i>{" "}
+                </button>
+                <p>
+                  {today.format("MMMM")}, {today.format("YYYY")}
+                </p>
+                <button onClick={() => setToday(today.add(1, 'month'))}>
+                  <i className="bx  bx-caret-right cursor-pointer hover:scale-110"></i>{" "}
+                </button>
+              </div>
               <div className="grid grid-cols-7 gap-2 mt-3 place-content-center">
                 {days.map((day, index) => {
-                  return(
+                  return (
                     <div key={index}>
                       <h1 className="text-center font-bold">{day}</h1>
-                       </div>
-                  )
+                    </div>
+                  );
                 })}
-                {generateDate().arrayDate.map(
+                {generateDate(today.month(), today.year()).arrayDate.map(
                   ({ date, currentMonth, today }, index) => {
                     return (
                       <div key={index}>
-                        <p className={`text-center ${currentMonth ? "font-bold" : "text-pink-200 text-lg"} ${today? "bg-[var(--cream-color)] text-[var(--primary-color)] rounded-md ": ""}`}>{date.date()}</p>
+                        <p
+                          className={`text-center cursor-pointer transition-all duration-200 py-1 px-2 ${
+                            currentMonth
+                              ? "font-bold hover:bg-[var(--cream-color)] hover:text-[var(--primary-color)] hover:rounded-md"
+                              : "text-pink-200 text-lg hover:text-[var(--cream-color)] "
+                          } ${
+                            today
+                              ? "bg-[var(--cream-color)] text-[var(--primary-color)] rounded-md shadow-md"
+                              : ""
+                          }  hover:scale-110`}
+                        >
+                          {date.date()}
+                        </p>
                       </div>
                     );
                   }

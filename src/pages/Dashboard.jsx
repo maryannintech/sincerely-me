@@ -244,13 +244,13 @@ export function Dashboard() {
             <div className="border-1 border-[#CC7676] w-full"></div>
             <ul>
               <li className="my-2 text-lg">
-                • Total Letters Written: {userLetters.length}
+                Total Letters Written: {userLetters.length}
               </li>
               <li className="my-2 text-lg">
-                • Letters Unlocked: {todayLetters.length}
+                Letters Unlocked: {todayLetters.length}
               </li>
               <li className="my-2 text-lg">
-                • Letters Pending: {futureLetters.length}
+                Letters Pending: {futureLetters.length}
               </li>
             </ul>
           </div>

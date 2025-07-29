@@ -1,22 +1,39 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { LetterCard } from "../components/LetterCard";
 import { ScrollToTop } from "../components/ScrollToTop";
+import { UserAuth } from "../context/AuthContext";
+import { supabase } from "../supabaseClient";
+import { ErrorText } from "../components/ErrorText";
 
 export function AllLetters() {
   document.title = "All Letters - Sincerely, Me";
-  const [showSearch, setShowSearch] = useState(false);
+  const { session } = UserAuth();
 
-  const letters = [
-    { title: "A Letter to My Future Self", isLocked: false },
-    { title: "Reflections on Today's Journey", isLocked: false },
-    { title: "Things I'm Grateful For", isLocked: true },
-    { title: "My Dreams and Aspirations", isLocked: false },
-    { title: "Lessons I've Learned This Year", isLocked: true },
-    { title: "Things I Want to Remember", isLocked: false },
-    { title: "Advice for Tough Times", isLocked: true },
-    { title: "Celebrating Small Victories", isLocked: false },
-    { title: "My Journey So Far", isLocked: true },
-  ];
+  const [showSearch, setShowSearch] = useState(false);
+  const [error, setError] = useState("");
+
+  const [userLetters, setUserLetters] = useState([]);
+
+  async function fetchLetters() {
+    try {
+      const { data, error } = await supabase
+        .from("letters")
+        .select("*")
+        .eq("user_id", session?.user?.id);
+
+      if (error) {
+        throw error;
+      }
+
+      setUserLetters(data);
+    } catch (error) {
+      setError("Error fetching letters");
+    }
+  }
+
+  useEffect(() => {
+    fetchLetters();
+  }, [session]);
 
   return (
     <div className="sm:p-10 px-4 select-none relative soft-popup">
@@ -94,18 +111,33 @@ export function AllLetters() {
         </div>
 
         <p className="pl-3 sm:hidden text-lg sm:text-2xl flex">A-Z</p>
-        <div className="mt-3 sm:mt-5 flex flex-wrap justify-center items-center sm:w-200 mx-auto gap-5 mb-20">
-          {letters.map((letter, index) => {
-            return (
-              <LetterCard
-                key={index}
-                label={letter.title}
-                letterLocked={letter.isLocked}
-                className="mb-4"
-              />
-            );
-          })}
-        </div>
+        {error ? (
+          <p className="text-red-500 text-center text-xl">{error}</p>
+        ) : (
+          <div className="mt-3 sm:mt-5 flex flex-wrap justify-center items-center sm:w-200 mx-auto gap-5 mb-20">
+            {userLetters.length === 0 ? (
+              <div className="text-center w-full">
+                <p className="text-xl text-gray-500 mb-4">No letters yet!</p>
+                <p className="text-lg text-gray-400">
+                  Write your first letter to get started
+                </p>
+              </div>
+            ) : (
+              userLetters.map((letter, index) => {
+                const isLocked = new Date(letter.delivery_date) > new Date();
+
+                return (
+                  <LetterCard
+                    key={letter.id}
+                    label={letter.title}
+                    letterLocked={isLocked}
+                    className="mb-4"
+                  />
+                );
+              })
+            )}
+          </div>
+        )}
       </div>
 
       <ScrollToTop />

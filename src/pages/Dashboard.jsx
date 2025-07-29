@@ -6,6 +6,7 @@ import { ScrollToTop } from "../components/ScrollToTop";
 import { UserAuth } from "../context/AuthContext";
 import { useEffect, useState } from "react";
 import { generateDate } from "../util/calendar";
+import { supabase } from "../supabaseClient";
 import dayjs from "dayjs";
 
 export function Dashboard() {
@@ -15,21 +16,58 @@ export function Dashboard() {
   const currentDate = dayjs();
   const [today, setToday] = useState(currentDate);
   const [selectDate, setSelectDate] = useState(currentDate);
+  const [userLetters, setUserLetters] = useState([]);
 
-  const letters = [
-    "A Letter to My Future Self",
-    "Reflections on Today's Journey",
-    "Things I'm Grateful For",
-  ];
+  const { session, signOut } = UserAuth();
+
+  async function fetchLetters() {
+    try {
+      const { data, error } = await supabase
+        .from("letters")
+        .select("*")
+        .eq("user_id", session?.user?.id)
+        .order("created_at", { ascending: true });
+
+      if (error) {
+        console.error("Error fetching letters:", error);
+        return;
+      }
+
+      setUserLetters(data || []);
+    } catch (error) {
+      console.error("Error fetching letters:", error);
+    }
+  }
+
+  const todayLetters = userLetters.filter((letter) => {
+    const deliveryDate = dayjs(letter.delivery_date);
+    return (
+      deliveryDate.isSame(dayjs(), "day") || deliveryDate.isBefore(dayjs())
+    );
+  });
+
+  const futureLetters = userLetters.filter((letter) => {
+    const deliveryDate = dayjs(letter.delivery_date);
+    return deliveryDate.isAfter(dayjs());
+  });
+
+  const selectedDateLetters = userLetters.filter((letter) => {
+    const deliveryDate = dayjs(letter.delivery_date);
+    return deliveryDate.isSame(selectDate, "day");
+  });
+
+  useEffect(() => {
+    if (session?.user?.id) {
+      fetchLetters();
+    }
+  }, [session]);
 
   useEffect(() => {
     console.log("Selected date:", selectDate.format("YYYY-MM-DD"));
   }, [selectDate]);
-
-  const { session, signOut } = UserAuth();
   document.title = "Dashboard - Sincerely, Me";
   return (
-    <div className="sm:p-10 px-4 select-none sm:pb-0 pb-20">
+    <div className=" px-4 select-none sm:pb-0 pb-20">
       <div className=" flex justify-evenly gap-10 soft-popup">
         <div className="left flex flex-col justify-center gap-5 items-center ">
           <div className="flex items-center justify-center flex-wrap gap-3 sm:gap-10">
@@ -55,29 +93,43 @@ export function Dashboard() {
           <div>
             <div className="sm:ml-20 flex flex-col items-center sm:items-baseline justify-baseline gap-5">
               <p className="sm:text-2xl text-xl text-left">
-                Letters for Today!
+                Letters for Today! ({todayLetters.length})
               </p>
               <div className="flex flex-wrap gap-8 items-center justify-center sm:justify-start w-fit">
-                {letters.map((letter, index) => {
-                  return <LetterCard key={index} label={letter} />;
-                })}
+                {todayLetters.length === 0 ? (
+                  <p className="text-gray-500 italic">
+                    No letters to read today
+                  </p>
+                ) : (
+                  todayLetters.slice(0, 3).map((letter, index) => {
+                    return <LetterCard key={letter.id} label={letter.title} />;
+                  })
+                )}
               </div>
               <div className="flex justify-center sm:justify-end sm:items-center w-full">
                 <SeeMoreButton />
               </div>
             </div>
             <div className="sm:ml-20 flex flex-col items-center sm:items-baseline justify-baseline gap-5">
-              <p className="sm:text-2xl text-xl text-left">Future's Mailbag</p>
+              <p className="sm:text-2xl text-xl text-left">
+                Future's Mailbag ({futureLetters.length})
+              </p>
               <div className="flex flex-wrap gap-8 items-center justify-center sm:justify-start w-fit">
-                {letters.map((letter, index) => {
-                  return (
-                    <LetterCard
-                      key={index}
-                      label={letter}
-                      letterLocked={true}
-                    />
-                  );
-                })}
+                {futureLetters.length === 0 ? (
+                  <p className="text-gray-500 italic">
+                    No future letters scheduled
+                  </p>
+                ) : (
+                  futureLetters.slice(0, 3).map((letter, index) => {
+                    return (
+                      <LetterCard
+                        key={letter.id}
+                        label={letter.title}
+                        letterLocked={true}
+                      />
+                    );
+                  })
+                )}
               </div>
               <div className="flex justify-center sm:justify-end sm:items-center w-full">
                 <SeeMoreButton />
@@ -85,9 +137,9 @@ export function Dashboard() {
             </div>
           </div>
         </div>
-        <div className="right hidden sm:flex items-start flex-col w-90 px-6">
+        <div className="right hidden sm:flex items-start flex-col w-90 px-6 sm:mb-10">
           <div className="w-full">
-            <div className="bg-[var(--primary-color)] text-[var(--cream-color)] rounded-md py-5 px-3 shadow-lg w-full h-90">
+            <div className="bg-[var(--primary-color)] text-[var(--cream-color)] rounded-md py-5 px-3 shadow-lg w-full h-86">
               <div className="text-center flex justify-evenly items-center transition-all duration-200">
                 <p>
                   {today.format("MMMM")}, {today.format("YYYY")}
@@ -124,10 +176,16 @@ export function Dashboard() {
                             currentMonth
                               ? "font-bold hover:bg-[var(--cream-color)] hover:text-[var(--primary-color)] hover:rounded-md"
                               : "text-pink-200 text-lg hover:text-[var(--cream-color)] "
-                          } ${today
-                            ? "bg-[var(--cream-color)] text-[var(--primary-color)] rounded-md shadow-md"
-                            : ""
-                          } ${selectDate.toDate().toDateString() === date.toDate().toDateString() ? "border-2 border-[var(--cream-color)] rounded-md" : ""}  hover:scale-110`}
+                          } ${
+                            today
+                              ? "bg-[var(--cream-color)] text-[var(--primary-color)] rounded-md shadow-md"
+                              : ""
+                          } ${
+                            selectDate.toDate().toDateString() ===
+                            date.toDate().toDateString()
+                              ? "border-2 border-[var(--cream-color)] rounded-md"
+                              : ""
+                          }  hover:scale-110`}
                           onClick={() => setSelectDate(date)}
                         >
                           {date.date()}
@@ -141,7 +199,7 @@ export function Dashboard() {
           </div>
           <div className="w-full">
             <p className="text-center italic text-xl mt-10 mb-2">
-              Your messages, by date.
+              Your letters, by date.
               <br />
               <span className="font-bold text-[var(--primary-color)]">
                 {selectDate.format("MMMM D, YYYY")}
@@ -149,13 +207,28 @@ export function Dashboard() {
             </p>
             <div className="border-1 border-[#CC7676] w-full"></div>
             <ul>
-              {letters.map((letter, index) => {
-                return (
-                  <li key={index} className="my-2 text-lg">
-                    • {letter}
-                  </li>
-                );
-              })}
+              {selectedDateLetters.length === 0 ? (
+                <li className="my-2 text-lg italic text-gray-500">
+                  No letters for this date
+                </li>
+              ) : (
+                selectedDateLetters.slice(0, 2).map((letter, index) => {
+                  const isLocked = dayjs(letter.delivery_date).isAfter(dayjs());
+                  return (
+                    <li
+                      key={letter.id}
+                      className="my-2 text-lg flex items-center gap-2"
+                    >
+                      {isLocked ? (
+                        <i className="bx bxs-lock text-sm text-gray-400"></i>
+                      ) : (
+                        <i className="bx bxs-lock-open text-sm text-[var(--primary-color)]"></i>
+                      )}
+                      {letter.title}
+                    </li>
+                  );
+                })
+              )}
             </ul>
             <div className="w-full flex justify-end mb-10">
               <Link to={"/app/all-letters"}>
@@ -170,9 +243,15 @@ export function Dashboard() {
             </p>
             <div className="border-1 border-[#CC7676] w-full"></div>
             <ul>
-              <li className="my-2 text-lg">• Total Letters Written: 15</li>
-              <li className="my-2 text-lg">• Letters Unlocked: 4</li>
-              <li className="my-2 text-lg">• Next Unlock In: 50 days</li>
+              <li className="my-2 text-lg">
+                • Total Letters Written: {userLetters.length}
+              </li>
+              <li className="my-2 text-lg">
+                • Letters Unlocked: {todayLetters.length}
+              </li>
+              <li className="my-2 text-lg">
+                • Letters Pending: {futureLetters.length}
+              </li>
             </ul>
           </div>
         </div>

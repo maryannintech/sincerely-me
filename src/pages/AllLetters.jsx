@@ -11,6 +11,7 @@ export function AllLetters() {
 
   const [showSearch, setShowSearch] = useState(false);
   const [error, setError] = useState("");
+  const [searchResults, setSearchResults] = useState([ ]);
 
   const [userLetters, setUserLetters] = useState([]);
 

@@ -87,7 +87,7 @@ export function Dashboard() {
         </div>
         <div className="right hidden sm:flex items-start flex-col w-90 px-6">
           <div className="w-full">
-            <div className="bg-[var(--primary-color)] text-[var(--cream-color)] rounded-md py-5 px-3 shadow-lg w-full h-90 text-xl">
+            <div className="bg-[var(--primary-color)] text-[var(--cream-color)] rounded-md py-5 px-3 shadow-lg w-full h-90">
               <div className="text-center flex justify-evenly items-center transition-all duration-200">
                 <p>
                   {today.format("MMMM")}, {today.format("YYYY")}

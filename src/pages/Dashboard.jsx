@@ -216,7 +216,7 @@ export function Dashboard() {
                       className="my-2 text-lg flex items-center gap-2"
                     >
                       {isLocked ? (
-                        <i className="bx bxs-lock text-sm text-gray-400"></i>
+                        <i className="bx bxs-lock text-sm text-[var(--light-pink)]"></i>
                       ) : (
                         <i className="bx bxs-lock-open text-sm text-[var(--primary-color)]"></i>
                       )}
@@ -228,7 +228,7 @@ export function Dashboard() {
             </ul>
             <div className="w-full flex justify-end mb-10">
               <Link to={"/app/all-letters"}>
-                <p className="mt-5 font-bold text-[var(--primary-color)] text-lg cursor-pointer italic ">
+                <p className="mt-5 font-bold text-[var(--primary-color)] text-lg cursor-pointer italic hover:underline">
                   See more
                 </p>
               </Link>

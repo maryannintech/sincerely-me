@@ -28,6 +28,7 @@ export function MakeLetter() {
           title: capitalizeFirstLetter(title),
           content: capitalizeFirstLetter(content),
           delivery_date: deliveryDate,
+          created_at: new Date().toISOString(),
         },
       ]);
 

@@ -26,6 +26,7 @@ export function LetterCard({ label, letterLocked = false }) {
             title: data.title,
             content: data.content,
             deliveryDate: data.delivery_date,
+            createdAt: data.created_at,
           },
         });
       }
@@ -39,7 +40,7 @@ export function LetterCard({ label, letterLocked = false }) {
 
   return (
     <div
-      className="bg-[var(--primary-color)] rounded-md pb-1 cursor-pointer"
+      className="bg-[var(--primary-color)] rounded-md pb-1 cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-lg"
       onClick={!letterLocked ? handleLetterClick : null}
       style={{
         backgroundColor: letterLocked

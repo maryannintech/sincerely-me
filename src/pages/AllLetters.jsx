@@ -11,7 +11,7 @@ export function AllLetters() {
 
   const [showSearch, setShowSearch] = useState(false);
   const [error, setError] = useState("");
-  const [searchResults, setSearchResults] = useState([ ]);
+  const [searchResults, setSearchResults] = useState([]);
 
   const [userLetters, setUserLetters] = useState([]);
 
@@ -96,7 +96,7 @@ export function AllLetters() {
               </label>
             </div>
           </form>
-          <div className="flex justify-end">
+          <div className="flex justify-end sm:my-4">
             <button
               type="submit"
               className="bg-[var(--primary-color)] text-[var(--cream-color)] py-1 mt-3 px-6 sm:px-8 rounded-md sm:text-xl hover:bg-[var(--light-pink)] transition-colors duration-300 "
@@ -104,14 +104,7 @@ export function AllLetters() {
               Search
             </button>
           </div>
-          <div>
-            <p className="hidden text-lg sm:text-3xl sm:block text-center sm:text-left">
-              A-Z
-            </p>
-          </div>
         </div>
-
-        <p className="pl-3 sm:hidden text-lg sm:text-2xl flex">A-Z</p>
         {error ? (
           <p className="text-red-500 text-center text-xl">{error}</p>
         ) : (

@@ -61,10 +61,6 @@ export function Dashboard() {
       fetchLetters();
     }
   }, [session]);
-
-  useEffect(() => {
-    console.log("Selected date:", selectDate.format("YYYY-MM-DD"));
-  }, [selectDate]);
   document.title = "Dashboard - Sincerely, Me";
   return (
     <div className=" px-4 select-none sm:pb-0 pb-20">

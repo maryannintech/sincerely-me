@@ -16,24 +16,33 @@ export function AllLetters() {
   const [userLetters, setUserLetters] = useState([]);
 
   async function fetchLetters() {
+    if (!session?.user?.id) {
+      console.log("No user session available");
+      return;
+    }
+
     try {
       const { data, error } = await supabase
         .from("letters")
         .select("*")
-        .eq("user_id", session?.user?.id);
+        .eq("user_id", session.user.id)
+        .order("created_at", { ascending: false });
 
       if (error) {
         throw error;
       }
 
-      setUserLetters(data);
+      setUserLetters(data || []);
     } catch (error) {
+      console.error("Error fetching letters:", error);
       setError("Error fetching letters");
     }
   }
 
   useEffect(() => {
-    fetchLetters();
+    if (session?.user?.id) {
+      fetchLetters();
+    }
   }, [session]);
 
   return (

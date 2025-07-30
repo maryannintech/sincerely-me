@@ -2,6 +2,7 @@ import { useState } from "react";
 import { UserAuth } from "../context/AuthContext";
 import { supabase } from "../supabaseClient";
 import { useNavigate } from "react-router-dom";
+import { capitalizeFirstLetter } from "../util/capitalizeTitle";
 
 export function MakeLetter() {
   document.title = "Write a letter - Sincerely, Me";
@@ -24,8 +25,8 @@ export function MakeLetter() {
       const { data, error } = await supabase.from("letters").insert([
         {
           user_id: session?.user?.id,
-          title: title,
-          content: content,
+          title: capitalizeFirstLetter(title),
+          content: capitalizeFirstLetter(content),
           delivery_date: deliveryDate,
         },
       ]);

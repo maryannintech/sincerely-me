@@ -10,6 +10,7 @@ import { AllLetters } from "./pages/AllLetters";
 import { Privacy } from "./pages/Privacy";
 import { Terms } from "./pages/Terms";
 import App from "./App";
+import { Letter } from "./pages/Letter";
 
 export const router = createBrowserRouter([
   {
@@ -42,6 +43,7 @@ export const router = createBrowserRouter([
       { path: "makeletters", element: <MakeLetter /> },
       { path: "about", element: <About /> },
       { path: "all-letters", element: <AllLetters /> },
+      { path: "letter", element: <Letter /> },
     ],
   },
 ]);

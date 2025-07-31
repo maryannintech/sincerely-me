@@ -18,31 +18,6 @@ export function AllLetters() {
 
   const [userLetters, setUserLetters] = useState([]);
 
-  function handleSearch(e) {
-    e.preventDefault();
-    setIsSearching(true);
-    console.log("Search initiated");
-    setSearchResults([]);
-
-    const results = userLetters.filter((letter) => {
-      const titleMatch = searchTitle
-        ? letter.title.toLowerCase().includes(searchTitle.toLowerCase())
-        : true;
-
-      const dateWrittenMatch = searchDateWritten
-        ? letter.created_at.split("T")[0] === searchDateWritten
-        : true;
-
-      const dateOpenMatch = searchDateOpen
-        ? letter.delivery_date === searchDateOpen
-        : true;
-
-      return titleMatch && dateWrittenMatch && dateOpenMatch;
-    });
-
-    setSearchResults(results);
-  }
-
   async function fetchLetters() {
     if (!session?.user?.id) {
       console.log("No user session available");
@@ -65,6 +40,30 @@ export function AllLetters() {
       console.error("Error fetching letters:", error);
       setError("Error fetching letters");
     }
+  }
+
+  function handleSearch(e) {
+    e.preventDefault();
+    setIsSearching(true);
+    setSearchResults([]);
+
+    const results = userLetters.filter((letter) => {
+      const titleMatch = searchTitle
+        ? letter.title.toLowerCase().includes(searchTitle.toLowerCase())
+        : true;
+
+      const dateWrittenMatch = searchDateWritten
+        ? letter.created_at.split("T")[0] === searchDateWritten
+        : true;
+
+      const dateOpenMatch = searchDateOpen
+        ? letter.delivery_date === searchDateOpen
+        : true;
+
+      return titleMatch && dateWrittenMatch && dateOpenMatch;
+    });
+
+    setSearchResults(results);
   }
 
   function handleClearSearch() {

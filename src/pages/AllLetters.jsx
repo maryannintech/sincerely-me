@@ -3,7 +3,6 @@ import { LetterCard } from "../components/LetterCard";
 import { ScrollToTop } from "../components/ScrollToTop";
 import { UserAuth } from "../context/AuthContext";
 import { supabase } from "../supabaseClient";
-import { ErrorText } from "../components/ErrorText";
 
 export function AllLetters() {
   document.title = "All Letters - Sincerely, Me";

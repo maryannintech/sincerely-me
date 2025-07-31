@@ -33,7 +33,7 @@ export function SignIn() {
         navigate("/loading");
         setTimeout(() => {
           navigate("/app/dashboard");
-        }, 3000);
+        }, 4000);
       } else {
         setLoading(false);
         setError(result.error || "An error occurred during sign up.");

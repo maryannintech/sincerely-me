@@ -18,7 +18,7 @@ export function Dashboard() {
   const [selectDate, setSelectDate] = useState(currentDate);
   const [userLetters, setUserLetters] = useState([]);
 
-  const { session, signOut } = UserAuth();
+  const { session } = UserAuth();
 
   async function fetchLetters() {
     try {
@@ -26,7 +26,7 @@ export function Dashboard() {
         .from("letters")
         .select("*")
         .eq("user_id", session?.user?.id)
-        .order("created_at", { ascending: true});
+        .order("created_at", { ascending: false });
 
       if (error) {
         console.error("Error fetching letters:", error);
@@ -41,8 +41,13 @@ export function Dashboard() {
 
   const todayLetters = userLetters.filter((letter) => {
     const deliveryDate = dayjs(letter.delivery_date);
+    return deliveryDate.isSame(dayjs(), "day");
+  });
+
+  const lettersUnlocked = userLetters.filter((letter) => {
+    const deliveryDate = dayjs(letter.delivery_date);
     return (
-      deliveryDate.isSame(dayjs(), "day") || deliveryDate.isBefore(dayjs())
+      deliveryDate.isBefore(dayjs()) || deliveryDate.isSame(dayjs(), "day")
     );
   });
 
@@ -61,6 +66,7 @@ export function Dashboard() {
       fetchLetters();
     }
   }, [session]);
+
   document.title = "Dashboard - Sincerely, Me";
   return (
     <div className=" px-4 select-none sm:pb-0 pb-20">
@@ -243,7 +249,7 @@ export function Dashboard() {
                 Total Letters Written: {userLetters.length}
               </li>
               <li className="my-2 text-lg">
-                Letters Unlocked: {todayLetters.length}
+                Letters Unlocked: {lettersUnlocked.length}
               </li>
               <li className="my-2 text-lg">
                 Letters Pending: {futureLetters.length}

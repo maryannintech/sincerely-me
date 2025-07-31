@@ -192,7 +192,7 @@ export function AllLetters() {
                 ) : null}
               </>
             )}
-            {userLetters.length > 0 && !isSearching && (
+            {!isSearching && (
               <>
                 {userLetters.length === 0 ? (
                   <div className="text-center w-full">

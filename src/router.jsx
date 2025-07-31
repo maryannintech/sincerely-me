@@ -11,6 +11,7 @@ import { Privacy } from "./pages/Privacy";
 import { Terms } from "./pages/Terms";
 import App from "./App";
 import { Letter } from "./pages/Letter";
+import { Loading } from "./pages/Loading";
 
 export const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ export const router = createBrowserRouter([
   {
     path: "/login",
     element: <LogIn />,
+  },
+  {
+    path: "/loading",
+    element: <Loading />,
   },
   {
     path: "/privacy",

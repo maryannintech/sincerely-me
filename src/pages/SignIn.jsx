@@ -30,7 +30,10 @@ export function SignIn() {
 
       if (result.success) {
         setLoading(false);
-        navigate("/app/dashboard");
+        navigate("/loading");
+        setTimeout(() => {
+          navigate("/app/dashboard");
+        }, 3000);
       } else {
         setLoading(false);
         setError(result.error || "An error occurred during sign up.");
@@ -58,10 +61,7 @@ export function SignIn() {
       <div>
         <div className="sm:w-160 h-50 sm:h-screen w-screen flex flex-col justify-center">
           <div className="bg-[var(--primary-color)] h-screen sm:h-165 sm:ml-5 flex flex-col justify-center items-center sm:rounded-lg">
-            <img
-              src="/images/envelope.png"
-              className="w-50 sm:w-sm"
-            ></img>
+            <img src="/images/envelope.png" className="w-50 sm:w-sm"></img>
             <p className="text-center sm:text-2xl text-[var(--cream-color)]">
               made by{" "}
               <a href="https://github.com/maryannintech" target="_blank">

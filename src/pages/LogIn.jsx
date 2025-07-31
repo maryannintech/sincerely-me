@@ -28,7 +28,10 @@ export function LogIn() {
       const result = await signIn(email, password);
 
       if (result.success) {
-        navigate("/app/dashboard");
+        navigate("/loading");
+        setTimeout(() => {
+          navigate("/app/dashboard");
+        }, 3000);
       } else {
         setError(result.error || "An error occurred during sign in.");
 

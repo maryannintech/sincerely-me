@@ -128,3 +128,7 @@ input:-webkit-autofill:active {
 input:-moz-autofill {
   background-color: #ebbaba !important;
 }
+
+.hover-button {
+  @apply hover:bg-[var(--light-pink)] transition-all duration-300 transform hover:scale-105;
+}

@@ -3,6 +3,7 @@ import { LetterCard } from "../components/LetterCard";
 import { ScrollToTop } from "../components/ScrollToTop";
 import { UserAuth } from "../context/AuthContext";
 import { supabase } from "../supabaseClient";
+import { DeleteButton } from "../components/DeleteButton";
 
 export function AllLetters() {
   document.title = "All Letters - Sincerely, Me";
@@ -15,6 +16,7 @@ export function AllLetters() {
   const [searchDateWritten, setSearchDateWritten] = useState("");
   const [searchDateOpen, setSearchDateOpen] = useState("");
   const [isSearching, setIsSearching] = useState(false);
+  const [editLetters, setEditLetters] = useState(false);
 
   const [userLetters, setUserLetters] = useState([]);
 
@@ -74,6 +76,30 @@ export function AllLetters() {
     document.querySelector("#search-title").value = "";
     document.querySelector("#date-written").value = "";
     document.querySelector("#date-open").value = "";
+  }
+
+  async function handleDelete(letterId) {
+    try {
+      const { data, error } = await supabase
+        .from("letters")
+        .delete()
+        .eq("id", letterId);
+
+      if (error) {
+        throw error;
+      }
+
+      setUserLetters(userLetters.filter((letter) => letter.id !== letterId));
+
+      if (isSearching) {
+        setSearchResults(
+          searchResults.filter((letter) => letter.id !== letterId)
+        );
+      }
+    } catch (error) {
+      console.error("Error deleting letter:", error);
+      setError("Error deleting letter");
+    }
   }
 
   useEffect(() => {
@@ -157,13 +183,22 @@ export function AllLetters() {
             {isSearching && (
               <button
                 onClick={handleClearSearch}
-                className="border-1 border-[var(--cream-color)] bg-[var(--primary-color)] text-[var(--cream-color)] py-1 mt-3 px-6 sm:px-8 rounded-md sm:text-xl hover:bg-[var(--light-pink)] transition-all duration-300 transform hover:scale-105 soft-popup"
+                className="border-1 border-[var(--cream-color)] bg-[var(--primary-color)] text-[var(--cream-color)] py-1 mt-3 px-6 sm:px-8 rounded-md sm:text-xl hover-button soft-popup"
               >
                 Clear
               </button>
             )}
           </form>
         </div>
+        <div className="w-fit mx-auto sm:flex justify-between items-center">
+          <button
+            onClick={() => setEditLetters(!editLetters)}
+            className=" text-right my-4 sm:text-xl bg-[var(--primary-color)] w-fit mx-auto text-[var(--cream-color)] px-4 py-2 rounded-lg cursor-pointer hover-button soft-popup"
+          >
+            Delete letter
+          </button>
+        </div>
+
         {error ? (
           <p className="text-red-500 text-center text-xl">{error}</p>
         ) : (
@@ -174,12 +209,19 @@ export function AllLetters() {
                   const isLocked = new Date(letter.delivery_date) > new Date();
 
                   return (
-                    <LetterCard
-                      key={letter.id}
-                      label={letter.title}
-                      letterLocked={isLocked}
-                      className="mb-4"
-                    />
+                    <div key={letter.id}>
+                      <LetterCard
+                        label={letter.title}
+                        letterLocked={isLocked}
+                        className="mb-4"
+                      />
+                      {editLetters && (
+                        <DeleteButton
+                          letter={letter}
+                          onDelete={() => handleDelete(letter.id)}
+                        />
+                      )}
+                    </div>
                   );
                 })}
               </>
@@ -209,12 +251,19 @@ export function AllLetters() {
                       new Date(letter.delivery_date) > new Date();
 
                     return (
-                      <LetterCard
-                        key={letter.id}
-                        label={letter.title}
-                        letterLocked={isLocked}
-                        className="mb-4"
-                      />
+                      <div key={letter.id}>
+                        <LetterCard
+                          label={letter.title}
+                          letterLocked={isLocked}
+                          className="mb-4"
+                        />
+                        {editLetters && (
+                          <DeleteButton
+                            letter={letter}
+                            onDelete={() => handleDelete(letter.id)}
+                          />
+                        )}
+                      </div>
                     );
                   })
                 )}

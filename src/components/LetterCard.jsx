@@ -39,21 +39,23 @@ export function LetterCard({ label, letterLocked = false }) {
   }
 
   return (
-    <div
-      className="bg-[var(--primary-color)] rounded-md pb-1 cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-lg"
-      onClick={!letterLocked ? handleLetterClick : null}
-      style={{
-        backgroundColor: letterLocked
-          ? "var(--light-pink)"
-          : "var(--primary-color)",
-        opacity: letterLocked ? 0.5 : 1,
-        cursor: letterLocked ? "not-allowed" : "pointer",
-      }}
-    >
-      <img src="/images/envelope.png" className="w-35 sm:w-60"></img>
-      <p className="text-center text-[var(--cream-color)]">
-        {truncatedLabel}..
-      </p>
-    </div>
+    <>
+      <div
+        className="bg-[var(--primary-color)] rounded-md pb-1 cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-lg"
+        onClick={!letterLocked ? handleLetterClick : null}
+        style={{
+          backgroundColor: letterLocked
+            ? "var(--light-pink)"
+            : "var(--primary-color)",
+          opacity: letterLocked ? 0.5 : 1,
+          cursor: letterLocked ? "not-allowed" : "pointer",
+        }}
+      >
+        <img src="/images/envelope.png" className="w-35 sm:w-60"></img>
+        <p className="text-center text-[var(--cream-color)]">
+          {truncatedLabel}..
+        </p>
+      </div>
+    </>
   );
 }

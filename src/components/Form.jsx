@@ -9,6 +9,7 @@ export function Form({
   bottomLabel,
   bottomLink = "#",
   isLogin = false,
+  isReset = false,
   handleSubmit,
   forgotPassword
 }) {
@@ -26,7 +27,7 @@ export function Form({
         <p className="text-end mt-2 sm:text-xl mb-5 sm:mb-8 hover:underline cursor-pointer" onClick={forgotPassword}>
           {isLogin ? "forgot your password?" : ""}
         </p>
-        {!isLogin && (
+        {!isLogin && isReset && (
           <div className="flex justify-center gap-2 text-center mb-5">
             <input
               type="checkbox"

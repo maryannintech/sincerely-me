@@ -72,6 +72,7 @@ export function ResetPassword() {
           subGreeting="Enter your new password"
           submitLabel={loading ? "Updating..." : "Update Password"}
           handleSubmit={handleResetPassword}
+          isReset={true}
           children={
             <>
               <Input

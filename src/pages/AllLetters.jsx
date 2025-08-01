@@ -195,7 +195,7 @@ export function AllLetters() {
             onClick={() => setEditLetters(!editLetters)}
             className=" text-right my-4 sm:text-xl bg-[var(--primary-color)] w-fit mx-auto text-[var(--cream-color)] px-4 py-2 rounded-lg cursor-pointer hover-button soft-popup"
           >
-            Delete letter
+            {editLetters ? "Done" : "Delete letters"}
           </button>
         </div>
 

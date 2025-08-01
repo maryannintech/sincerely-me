@@ -63,7 +63,9 @@ _Fully responsive design optimized for mobile devices_
 
 ## 🎯 Development Purpose
 
-This project was created as a learning exercise to practice full-stack development skills. While fully functional, I've chosen not to deploy this application publicly as it serves as a personal portfolio piece demonstrating my capabilities with React, Supabase, and modern web development practices. The focus was on building a complete, polished application from concept to implementation.
+This project was created as a learning exercise to practice full-stack development skills. While fully functional, I've chosen not to deploy this application publicly as it serves as a personal portfolio piece demonstrating my capabilities with React, Supabase, and modern web development practices.
+
+This marks my first experience working with a backend service, using Supabase for database management, authentication, and real-time functionality. The focus was on building a complete, polished application from concept to implementation, bridging the gap between frontend-only projects and full-stack development.
 
 ## 📄 License
 

@@ -17,10 +17,8 @@ _See the complete user journey from sign-up to writing and managing letters_
 ### Authentication
 
 ![Sign Up](screenshots/signin.png)
-_Clean and intuitive sign-up interface_
 
 ![Log In](screenshots/login.png)
-_Secure login with password reset functionality_
 
 ### Dashboard
 

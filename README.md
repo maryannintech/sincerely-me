@@ -6,6 +6,37 @@ A digital letter-writing platform that allows you to send messages to your futur
 
 This project is the full realization of the concept introduced in my [coming soon page](https://github.com/maryannintech/coming-soon-page) - my first project using Tailwind CSS. What started as a simple landing page as now grown into a complete, functional web application. The coming soon page served as the foundation for the design language and user experience you see today.
 
+## Demo
+
+**📹 Screen Recording**: [Watch the full application walkthrough](https://drive.google.com/file/d/1BCx4HNqNOhvzeL2KxWcT16YcWUfFXrem/view?usp=drive_link)
+
+_See the complete user journey from sign-up to writing and managing letters_
+
+## Screenshots
+
+### Authentication
+
+![Sign Up](screenshots/signin.png)
+_Clean and intuitive sign-up interface_
+
+![Log In](screenshots/login.png)
+_Secure login with password reset functionality_
+
+### Dashboard
+
+![Dashboard](screenshots/dashboard.png)
+_Main dashboard with calendar view and letter previews_
+
+### Letter Writing
+
+![Letter Writing](screenshots/write-letter.png)
+_Intuitive letter composition interface_
+
+### Letter Management
+
+![All Letters](screenshots/all-letters.png)
+_Browse and search through your letters_
+
 ## Features
 
 - **Personal Letter Writing**: Compose heartfelt letters to your future self

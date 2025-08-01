@@ -217,7 +217,6 @@ export function AllLetters() {
                       />
                       {editLetters && (
                         <DeleteButton
-                          letter={letter}
                           onDelete={() => handleDelete(letter.id)}
                         />
                       )}
@@ -259,7 +258,6 @@ export function AllLetters() {
                         />
                         {editLetters && (
                           <DeleteButton
-                            letter={letter}
                             onDelete={() => handleDelete(letter.id)}
                           />
                         )}

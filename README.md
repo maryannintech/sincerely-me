@@ -22,7 +22,12 @@ This project is the full realization of the concept introduced in my [coming soo
 - **Routing**: React Router DOM
 - **Styling**: Tailwind CSS with custom CSS animations
 - **Backend**: Supabase (PostgreSQL database with authentication)
-- **Deployment**: Ready for deployment on Vercel, Netlify, or similar platforms
+- **Date Handling**: Dayjs for date manipulation and formatting
+- **Development**: Local development project for learning purposes
+
+## 🎯 Development Purpose
+
+This project was created as a learning exercise to practice full-stack development skills. While fully functional, I've chosen not to deploy this application publicly as it serves as a personal portfolio piece demonstrating my capabilities with React, Supabase, and modern web development practices. The focus was on building a complete, polished application from concept to implementation.
 
 ## 📄 License
 

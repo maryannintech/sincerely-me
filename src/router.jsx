@@ -12,6 +12,7 @@ import { Terms } from "./pages/Terms";
 import App from "./App";
 import { Letter } from "./pages/Letter";
 import { Loading } from "./pages/Loading";
+import { ResetPassword } from "./pages/ResetPassword";
 
 export const router = createBrowserRouter([
   {
@@ -38,6 +39,7 @@ export const router = createBrowserRouter([
     path: "/terms",
     element: <Terms />,
   },
+  { path: "/reset-password", element: <ResetPassword /> },
   {
     path: "/app",
     element: <AppLayout />,

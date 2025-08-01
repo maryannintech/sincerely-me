@@ -10,6 +10,7 @@ export function Form({
   bottomLink = "#",
   isLogin = false,
   handleSubmit,
+  forgotPassword
 }) {
   return (
     <>
@@ -22,7 +23,7 @@ export function Form({
         <p className="text-xl sm:text-3xl text-center">{subGreeting}</p>
         <div className="border-1 border-[#CC7676] my-2 sm:my-5"></div>
         {children}
-        <p className="text-end mt-2 sm:text-xl mb-5 sm:mb-8">
+        <p className="text-end mt-2 sm:text-xl mb-5 sm:mb-8 hover:underline cursor-pointer" onClick={forgotPassword}>
           {isLogin ? "forgot your password?" : ""}
         </p>
         {!isLogin && (

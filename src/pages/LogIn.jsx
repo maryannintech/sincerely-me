@@ -5,6 +5,7 @@ import { UserAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { ErrorText } from "../components/ErrorText";
 import { useState } from "react";
+import { supabase } from "../supabaseClient";
 
 export function LogIn() {
   document.title = "Log In - Sincerely, Me";
@@ -43,13 +44,35 @@ export function LogIn() {
       }
     } catch (error) {
       console.error("Error during login:", error);
-      setError(result.error || "An error occurred during sign up.");
+      setError(error.message || "An error occurred during sign in.");
 
       const newTimeout = setTimeout(() => {
         setError("");
         setErrorTimeout(null);
       }, 3000);
       setErrorTimeout(newTimeout);
+    }
+  }
+
+  
+  async function handleForgotPassword() {
+    if (!email) {
+      setError("Please enter your email first");
+      return;
+    }
+
+    try {
+      const { error } = await supabase.auth.resetPasswordForEmail(email, {
+        redirectTo: `${window.location.origin}/reset-password`,
+      });
+
+      if (error) {
+        setError("Error sending reset email");
+      } else {
+        setError("Check your email for reset instructions");
+      }
+    } catch (error) {
+      setError("An error occurred while trying to reset your password.");
     }
   }
 
@@ -68,6 +91,7 @@ export function LogIn() {
           bottomQuestion="Don't have an account?"
           bottomLink="/"
           handleSubmit={handleLogIn}
+          forgotPassword={handleForgotPassword}
           isLogin={true}
           children={
             <>

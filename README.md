@@ -69,4 +69,4 @@ This marks my first experience working with a backend service, using Supabase fo
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License 
